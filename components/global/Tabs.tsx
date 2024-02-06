@@ -4,7 +4,7 @@ const Tabs = ({ buttons, active = "", className = "", buttonClassName = "" , onC
   const [hover, setHover] = useState("");
 
   return (
-    <div className={`flex divide-x divide-[#292929] border border-[#292929] rounded-lg overflow-hidden ${className}`}>
+    <div className={`flex divide-x divide-[#292929] border border-[#292929] rounded-lg overflow-scroll ${className}`}>
       {buttons.map((button : any, index : number) => (
         <button
           id={`button-${index}`}

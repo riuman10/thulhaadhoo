@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import { TableFields, Islands } from "@/data/Global";
+import ChevronDown from "@/components/icons/ChevronDown";
 const Modal = dynamic(() => import("@/components/global/Modal"));
 const InfinityTable = dynamic(
   () => import("@/components/tables/InfinityTable")
@@ -94,7 +95,7 @@ export default function Home() {
           <Input
             placeholder="Search..."
             value={search}
-            width="w-[350px]"
+            width="md:w-[350px] w-[150px]"
             onChange={(value) => {
               setSearch(value);
               setTimeout(() => {
@@ -117,8 +118,10 @@ export default function Home() {
       {search ? (
         <></>
       ) : (
-        <div className="" onClick={() => setPageNumber(pageNumber + 1)}>
-          Fetch more{" "}
+        <div className="w-full flex items-center justify-center">
+        <div className=" bg-[#141414] px-8 text-center mt-10 rounded-xl cursor-pointer py-2" onClick={() => setPageNumber(pageNumber + 1)}>
+          <ChevronDown />
+        </div>
         </div>
       )}
       <Modal
