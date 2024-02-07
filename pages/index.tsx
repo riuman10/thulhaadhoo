@@ -3,15 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import { TableFields, Islands } from "@/data/Global";
-import ChevronDown from "@/components/icons/ChevronDown";
-const Modal = dynamic(() => import("@/components/global/Modal"));
-const InfinityTable = dynamic(() => import("@/components/tables/InfinityTable"));
-const Input = dynamic(() => import("@/components/inputs/Input"));
+const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
 const VoterDetails = dynamic(
   () => import("@/components/voters_list/VoterDetails")
 );
+const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
+const Modal = dynamic(() => import("@/components/global/Modal"));
+const Input = dynamic(() => import("@/components/inputs/Input"));
 const Tabs = dynamic(() => import("@/components/global/Tabs"));
-import VirtualTable from "@/components/tables/VirtualTable";
 
 const PAGE_SIZE = 25;
 
@@ -24,23 +23,13 @@ export default function Home() {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [island, setIsland] = useState<any>(Islands[0].id);
 
-  const fetchData = async () => {
-    const { data } = await supabase
+  const fetchVoters = async () => {
+    let query = supabase
       .from("thulhaadhoo_foshi")
       .select("*")
-      .range((pageNumber - 1) * PAGE_SIZE, pageNumber * PAGE_SIZE - 1);
-    if (voters.length === 0) {
-      setVoters(data);
-      setLoading(false);
-    } else {
-      setVoters((prev: any) => [...prev, ...(data || [])]);
-      setLoading(false);
-    }
-    setLoading(false);
-  };
-
-  const fetchVoters = async () => {
-    let query = supabase.from("thulhaadhoo_foshi").select("*").order('house_name', { ascending: true });
+      .order("house_name", {
+        ascending: true,
+      });
 
     if (island !== false) {
       query = query.eq("island", island);
@@ -105,31 +94,24 @@ export default function Home() {
           />
         </div>
       </div>
-      <VirtualTable 
-      data = {voters} 
-      tableFields = {TableFields} 
-      onRowClick={(x: any) => {
-        setSelectedItem(x);
-        setOpen(true);
-      }}
-      />
-      {/* <InfinityTable
-        fields={TableFields}
-        items={voters}
-        loading={loading}
+      <VirtualTable
+        data={voters}
+        tableFields={TableFields}
         onRowClick={(x: any) => {
           setSelectedItem(x);
           setOpen(true);
         }}
-      /> */}
-
+      />
       {search ? (
         <></>
       ) : (
         <div className="w-full flex items-center justify-center">
-        <div className=" bg-[#141414] px-8 text-center mt-10 rounded-xl cursor-pointer py-2" onClick={() => setPageNumber(pageNumber + 1)}>
-          <ChevronDown />
-        </div>
+          <div
+            className=" bg-[#141414] px-8 text-center mt-10 rounded-xl cursor-pointer py-2"
+            onClick={() => setPageNumber(pageNumber + 1)}
+          >
+            <ChevronDown />
+          </div>
         </div>
       )}
       <Modal

@@ -3,24 +3,21 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 
 const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
-  const parentRef = useRef<HTMLDivElement | any>();
+  const parentRef = useRef<any>();
 
   const rowVirtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 35,
   });
+
   const virtualItems = rowVirtualizer.getVirtualItems();
+
   return (
-    <>
+    <div className="overflow-x-auto">
       <table
         ref={parentRef}
-        style={{
-          height: `400px`,
-          width: "100%",
-          overflow: "auto",
-        }}
-        className="w-full divide-y divide-[#292929] bg-[#141414]"
+        className="w-full divide-y divide-[#292929] bg-[#141414] overflow-hidden"
       >
         <thead className="">
           <tr className="bg-black">
@@ -38,9 +35,8 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
           </tr>
         </thead>
         <tbody className={`bg-[#141414] relative divide-y divide-[#292929]`}>
-          {virtualItems.map((virtualItem) => {
-            const listItem = data[virtualItem.index];
-
+          {virtualItems.map((virtualItem, index) => {
+            const listItem = data[index];
             return (
               <tr key={virtualItem.index} onClick={() => onRowClick(listItem)}>
                 {tableFields &&
@@ -50,8 +46,8 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       key={index}
-                      className={`px-6 py-4 whitespace-nowrap text-sm truncate max-w-[230px] cursor-pointer ${
-                        index == 0 ? "w-[50px] text-gray-100" : "text-gray-100"
+                      className={`px-6 py-4 whitespace-nowrap text-sm truncate max-w-[230px] sm:max-w-none cursor-pointer ${
+                        index === 0 ? "w-[50px] text-gray-100" : "text-gray-100"
                       }`}
                     >
                       {header.render
@@ -64,7 +60,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
