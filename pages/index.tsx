@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   const fetchVoters = async () => {
-    let query = supabase.from("thulhaadhoo_foshi").select("*");
+    let query = supabase.from("thulhaadhoo_foshi").select("*").order('house_name', { ascending: true });
 
     if (island !== false) {
       query = query.eq("island", island);
