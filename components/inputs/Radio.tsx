@@ -5,6 +5,7 @@ interface item {
   id: string;
   name: string;
   from?: string;
+  subtitle? : string
 }
 
 interface RadioProps {
@@ -95,7 +96,7 @@ const Radio: React.FC<RadioProps> = ({
                       >
                         {item.name}
                       </RadioGroup.Label>
-                      <p className="text-xs mt-3">{item.from}</p>
+                      <p className="text-xs mt-3">{item.from || item.subtitle}</p>
                     </div>
                   </div>
                 </div>

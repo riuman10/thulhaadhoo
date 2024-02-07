@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { supabase } from "@/supabase";
-import { Party, Candidates } from "@/data/Global";
+import { Party, Candidates , yesNo} from "@/data/Global";
 const Input = dynamic(() => import("../inputs/Input"));
 const DropDown = dynamic(() => import("../global/DropDown"));
 const Radio = dynamic(() => import("../inputs/Radio"));
@@ -23,6 +23,7 @@ function VoterDetails({
   const [mobile, setMobile] = useState<string>("");
   const [party, setParty] = useState<any>(false);
   const [votingFor, setVotingFor] = useState<any>(false);
+  const [contacted , setContacted] = useState<any>(false);
 
   const updateItem = async () => {
     const { data } = await supabase
@@ -32,7 +33,8 @@ function VoterDetails({
         party: party ? party.id : "unknown",
         mobile_number: mobile,
         voting_for: votingFor ? votingFor.id : "-",
-      })
+        approached : contacted.id === "true" ? true : false
+      }) 
       .eq("id", item.id)
       .select();
     data ? onSuccess(data) : null;
@@ -55,8 +57,6 @@ function VoterDetails({
         : false
     );
   }, [item]);
-
-  console.log(votingFor);
 
   return (
     <div className="flex flex-col gap-6">
@@ -106,6 +106,14 @@ function VoterDetails({
             />
           </div>
         </div>
+      </div>
+      <div className="flex flex-col gap-6">
+        <p className="text-lg font-semibold mt-8">Contacted</p>
+        <Radio
+          defaultSelected={item.approached !== undefined ? yesNo.find((x) => x.id === item.approached.toString()) : contacted}
+          onChange={(x) => setContacted(x)}
+          items={yesNo}
+        />
       </div>
       <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold mt-8">Voting for</p>

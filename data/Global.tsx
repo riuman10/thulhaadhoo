@@ -24,6 +24,19 @@ const TableFields = [
   },
 ];
 
+const yesNo = [
+  {
+    id : "true",
+    name : "Yes",
+    subtitle : "Contacted already"
+  },
+  {
+    id : "false",
+    name : "No",
+    subtitle : "Not Contacted"
+  }
+]
+
 const Candidates = [
   {
     id: "kadde",
@@ -49,6 +62,11 @@ const Candidates = [
     id: "hannan",
     name: "Hannan",
     from: "Amilla",
+  },
+  {
+    id: "afrah",
+    name: "Afrah",
+    from: "The Democrats",
   },
   {
     id: "undecided",
@@ -124,4 +142,4 @@ const Islands = [
   },
 ];
 
-export { TableFields, Party , Islands, Candidates};
+export { TableFields, Party , Islands, Candidates , yesNo };
