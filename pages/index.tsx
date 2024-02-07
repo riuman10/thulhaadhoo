@@ -71,7 +71,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="md:p-14 p-0">
+    <div className="md:p-14 p-6">
       <div className="flex justify-between">
         <div>
           <Tabs
