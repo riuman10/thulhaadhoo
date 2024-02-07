@@ -54,7 +54,7 @@ function VotersList({}: Props) {
     const { data } = await supabase
       .from("thulhaadhoo_foshi")
       .select("*")
-      .textSearch("full_name", value)
+      .textSearch("house_name", value)
       .eq("island", island);
     setVoters(data);
     setLoading(false);
