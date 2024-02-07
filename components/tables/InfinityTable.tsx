@@ -81,13 +81,6 @@ const InfinityTable = ({
                             ))}
                         </tr>
                       ))}
-                      {/* {
-                        data.length === 0 ? (
-                          <td className="py-6 pl-8">
-                          <tr className="text-sm">{data.length === 0 ? "No data to show" : ""}</tr>
-                        </td>
-                        ) : <></>
-                      } */}
                   </tbody>
                 )}
               </table>

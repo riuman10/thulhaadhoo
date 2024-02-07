@@ -5,16 +5,15 @@ import { supabase } from "@/supabase";
 import { TableFields, Islands } from "@/data/Global";
 import ChevronDown from "@/components/icons/ChevronDown";
 const Modal = dynamic(() => import("@/components/global/Modal"));
-const InfinityTable = dynamic(
-  () => import("@/components/tables/InfinityTable")
-);
+const InfinityTable = dynamic(() => import("@/components/tables/InfinityTable"));
 const Input = dynamic(() => import("@/components/inputs/Input"));
 const VoterDetails = dynamic(
   () => import("@/components/voters_list/VoterDetails")
 );
-import Tabs from "@/components/global/Tabs";
+const Tabs = dynamic(() => import("@/components/global/Tabs"));
+import VirtualTable from "@/components/tables/VirtualTable";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 25;
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,7 +62,8 @@ export default function Home() {
     const { data } = await supabase
       .from("thulhaadhoo_foshi")
       .select("*")
-      .textSearch("full_name", value);
+      .textSearch("full_name", value)
+      .eq("island", island);
     setVoters(data);
     setLoading(false);
   };
@@ -99,13 +99,21 @@ export default function Home() {
             onChange={(value) => {
               setSearch(value);
               setTimeout(() => {
-                value ? searchData(value) : fetchData();
+                value ? searchData(value) : fetchVoters();
               }, 1000);
             }}
           />
         </div>
       </div>
-      <InfinityTable
+      <VirtualTable 
+      data = {voters} 
+      tableFields = {TableFields} 
+      onRowClick={(x: any) => {
+        setSelectedItem(x);
+        setOpen(true);
+      }}
+      />
+      {/* <InfinityTable
         fields={TableFields}
         items={voters}
         loading={loading}
@@ -113,7 +121,7 @@ export default function Home() {
           setSelectedItem(x);
           setOpen(true);
         }}
-      />
+      /> */}
 
       {search ? (
         <></>
