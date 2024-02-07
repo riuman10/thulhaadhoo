@@ -6,7 +6,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
   const parentRef = useRef<any>();
 
   const rowVirtualizer = useVirtualizer({
-    count: data.length,
+    count: data && data.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 35,
   });

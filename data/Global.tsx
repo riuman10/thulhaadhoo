@@ -142,4 +142,14 @@ const Islands = [
   },
 ];
 
-export { TableFields, Party , Islands, Candidates , yesNo };
+const NavigationLinks = [
+  { id: "home", name: "Dashboard", link: "/dashboard", icon: "Home" },
+  {
+    id: "voters_list",
+    name: "Voters List",
+    link: "/voters-list",
+    icon: "Councillors",
+  }
+];
+
+export { TableFields, Party , Islands, Candidates , yesNo, NavigationLinks };
