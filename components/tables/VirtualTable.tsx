@@ -20,7 +20,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
         className="w-full divide-y divide-[#292929] bg-[#141414] overflow-hidden"
       >
         <thead className="">
-          <tr className="bg-black">
+          <tr className="bg-[#141414]">
             {tableFields.map((header: any, index: number) => (
               <th
                 key={index}

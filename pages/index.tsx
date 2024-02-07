@@ -72,7 +72,7 @@ export default function Home() {
 
   return (
     <div className="md:p-14 p-6">
-      <div className="flex justify-between">
+      <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-between">
         <div>
           <Tabs
             buttons={Islands}
@@ -84,7 +84,7 @@ export default function Home() {
           <Input
             placeholder="Search..."
             value={search}
-            width="md:w-[350px] w-[150px]"
+            width="md:w-[350px] w-[250px]"
             onChange={(value) => {
               setSearch(value);
               setTimeout(() => {
