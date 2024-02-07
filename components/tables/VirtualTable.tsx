@@ -14,7 +14,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
   const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto min-w-full">
       <table
         ref={parentRef}
         className="w-full divide-y divide-[#292929] bg-[#141414] overflow-hidden"
