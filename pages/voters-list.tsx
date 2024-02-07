@@ -76,9 +76,6 @@ function VotersList({}: Props) {
     <div>
       <Header title = "Voters list" />
       <div className="mt-8">
-      {/* <PieChart 
-      viewName="thulhaadhoo_party"
-      /> */}
       <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-between">
         <div>
           <Tabs
@@ -114,7 +111,7 @@ function VotersList({}: Props) {
       ) : (
         <div className="w-full flex items-center justify-center">
           <div
-            className=" bg-[#141414] px-8 text-center mt-10 rounded-xl cursor-pointer py-2"
+            className=" bg-[#141414] px-4 text-center mt-10 rounded-xl cursor-pointer py-2"
             onClick={() => setPageNumber(pageNumber + 1)}
           >
             <ChevronDown />

@@ -15,7 +15,7 @@ const Tabs = ({ buttons, active = "", className = "", buttonClassName = "" , onC
           className={`py-2 px-3 flex items-center w-full ${button.name ? "gap-x-2" : null} font-medium text-sm ${
             button.disabled ? "bg-gray-100 cursor-not-allowed" : ""
           } transition-colors ${buttonClassName} ${
-            active ? (hover == button.id || active === button.id ? "text-gray-800 bg-yellow-400" : "text-gray-200") : "text-gray-700"
+            active ? (hover == button.id || active === button.id ? "text-gray-50 bg-[#292929]" : "text-gray-200") : "text-gray-700"
           }`}
         >
           <span className=" whitespace-nowrap">{button.name ? button.name : null}</span>
