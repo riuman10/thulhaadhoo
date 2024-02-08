@@ -14,13 +14,13 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
   const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <div className="overflow-x-auto min-w-full">
+    <div className="overflow-x-auto min-w-full rounded-md border border-[#292929]">
       <table
         ref={parentRef}
         className="w-full divide-y divide-[#292929] bg-[#141414] overflow-hidden"
       >
         <thead className="">
-          <tr className="bg-[#141414]">
+          <tr className="bg-[#292929]">
             {tableFields.map((header: any, index: number) => (
               <th
                 key={index}

@@ -15,6 +15,7 @@ interface ModalProps {
   hideAction?: boolean;
   btnText?: string;
   processing?: boolean;
+  showButton? : boolean
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -28,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
   showBorder = false,
   btnText,
   hideAction = false,
-  processing = false,
+  showButton = true
 }) => {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -105,7 +106,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 <div
                   className={`${
-                    hideAction ? "h-full" : "h-[calc(100%-86px)]"
+                    !showButton ? "h-full" : "h-[calc(100%-86px)]"
                   }  flex flex-col bg-[#141414] shadow-xl overflow-y-scroll scrollBarHide pb-[100px]`}
                 >
                   <div
@@ -140,13 +141,14 @@ const Modal: React.FC<ModalProps> = ({
                     {React.cloneElement(children, { ...props })}
                   </div>
                 </div>
-
-                <div
+                {
+                  showButton ? (
+                    <div
                   className={`fixed w-screen ${size} py-6 px-8 gap-4 border-t border-[#292929] bg-[#141414] bg-25 z-30 bottom-0 flex justify-end`}
                 >
                   <Button
                     name="Cancel"
-                    disabled={loading || processing}
+                    disabled={loading}
                     theme="ghost"
                     onSelect={() => {
                       handleToggle();
@@ -155,14 +157,16 @@ const Modal: React.FC<ModalProps> = ({
                   />
                   <Button
                     theme="default"
-                    loading={loading || processing}
-                    disabled={loading || processing}
+                    loading={loading}
+                    disabled={loading}
                     name={btnText ? btnText : edit ? "Update" : "Add"}
                     onSelect={() => {
                       !loading && drawerOpen && setConfirm(true);
                     }}
                   />
                 </div>
+                  ) : null
+                }
               </div>
             </Transition.Child>
           </div>

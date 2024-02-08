@@ -22,7 +22,7 @@ export default function AllIslands({}: Props) {
       <div className="grid grid-cols-4 gap-6">
         {
           overview && overview.map((item : any , index : number) => (
-            <BorderCard key = {index} title = {item.party} value = {item.party_count} />
+            <BorderCard key = {index} title = {item.party} value = {item.party_count} party />
           ))
         }
       </div>
