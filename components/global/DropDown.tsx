@@ -48,7 +48,7 @@ function DropDown({
             <Combobox.Button
               className={`w-full relative flex gap-2 items-center justify-between pl-[10px] pr-[17px] py-2 ${
                 disabled ? "cursor-not-allowed" : ""
-              } bg-[#424242]`}
+              } bg-[#121212]`}
             >
               <div className="flex gap-2.5 items-center">
                 <p

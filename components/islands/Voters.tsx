@@ -1,9 +1,10 @@
-import VirtualTable from "../tables/VirtualTable";
 import { TableFields } from "@/data/Global";
 import { supabase } from "@/supabase";
 import { useEffect, useState } from "react";
-import VoterDetails from "../voters_list/VoterDetails";
-import Modal from "../global/Modal";
+import dynamic from "next/dynamic";
+const VirtualTable = dynamic(() => import("../tables/VirtualTable"));
+const VoterDetails = dynamic(() => import("../voters_list/VoterDetails"));
+const Modal = dynamic(() => import("../global/Modal"));
 
 type Props = {
   item: any;
@@ -36,7 +37,6 @@ function Voters({
     fetchVoters();
   }, [item]);
 
-  
   return (
     <div>
       <VirtualTable
@@ -52,15 +52,15 @@ function Voters({
         drawerOpen={open}
         onClose={() => setOpen(false)}
         title={selectedVoter.full_name}
-        btnText = "Update"
+        btnText="Update"
       >
-        <VoterDetails 
-        item={selectedVoter} 
-        onSuccess={(item) => {
-          let index = voters.findIndex((x: any) => x.id === item[0].id);
-          setVoters(voters.with(index, item[0]));
-          setOpen(false);
-        }}
+        <VoterDetails
+          item={selectedVoter}
+          onSuccess={(item) => {
+            let index = voters.findIndex((x: any) => x.id === item[0].id);
+            setVoters(voters.with(index, item[0]));
+            setOpen(false);
+          }}
         />
       </Modal>
     </div>

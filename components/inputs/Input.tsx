@@ -18,7 +18,7 @@ function Input({
   onChange,
 }: Props) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full bg-[#141414] rounded-lg border border-[#424242]">
       <div className={`relative ${title && "h-[64px]"}`}>
         <div className="flex">
           {title ? (
@@ -28,12 +28,12 @@ function Input({
           )}
         </div>
         <div
-          className={`relative ${width} group gap-2 flex overflow-hidden mt-px px-3 py-2 rounded-lg bg-[#424242] ${
+          className={`relative ${width} group gap-2 flex overflow-hidden mt-px px-3 py-2 rounded-lg  ${
             disabled ? "bg-[#292929]" : ""
           }`}
         >
           <input
-            className={`focus:outline-none text-sm w-full text-white placeholder:text-[#A3A3A3] bg-[#424242] ${
+            className={`focus:outline-none text-sm w-full text-white placeholder:text-[#A3A3A3] bg-[#141414] ${
               disabled ? "bg-[#292929]" : ""
             }`}
             type="text"

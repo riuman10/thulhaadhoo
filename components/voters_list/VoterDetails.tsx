@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { supabase } from "@/supabase";
 import { Party, Candidates , yesNo} from "@/data/Global";
+import dynamic from "next/dynamic";
 const Input = dynamic(() => import("../inputs/Input"));
 const DropDown = dynamic(() => import("../global/DropDown"));
 const Radio = dynamic(() => import("../inputs/Radio"));

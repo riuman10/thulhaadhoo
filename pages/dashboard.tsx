@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Header from "@/components/global/Header";
-import DropDown from "@/components/global/DropDown";
 import { IslandDropdown } from "@/data/Dashboard";
 import dynamic from "next/dynamic";
+const DropDown = dynamic(() => import("@/components/global/DropDown"));
 const Thulhaadhoo = dynamic(() => import("@/components/islands/Thulhaadhoo"));
 const Goidhoo = dynamic(() => import("@/components/islands/Goidhoo"));
 const Fehendhoo = dynamic(() => import("@/components/islands/Fehendhoo"));
@@ -24,8 +24,8 @@ function Dashboard({}: Props) {
         return <Fehendhoo />;
       case "B. Fulhadhoo":
         return <Fulhadhoo />;
-        case "all":
-          return <AllIslands />;
+      case "all":
+        return <AllIslands />;
       default:
         return <></>;
     }
