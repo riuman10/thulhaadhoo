@@ -12,6 +12,7 @@ type Props = {};
 export default function Fehendhoo({}: Props) {
   const [overview, setOverview] = useState<any>();
   const [votingFrom, setVotingFrom] = useState<any>(false);
+  const [votingFor, setVotingFor] = useState<any>(false);
   const [selectedDhaairaa, setSelectedDhaairaa] = useState<any>(false);
   const [drawer, setDrawer] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
@@ -29,6 +30,12 @@ export default function Fehendhoo({}: Props) {
     setVotingFrom(temp);
   };
 
+  const fetchVotingFor = async () => {
+    const { data } = await supabase.from(`fehendhoo_voting_for`).select("*");
+    let temp = data && data.filter((obj) => obj.party !== "unknown");
+    setVotingFor(temp);
+  };
+
   const filteredItems =
     votingFrom &&
     votingFrom.filter((item: any) =>
@@ -38,6 +45,7 @@ export default function Fehendhoo({}: Props) {
   useEffect(() => {
     fetchData();
     fetchBox();
+    fetchVotingFor();
   }, []);
 
   return (
@@ -53,41 +61,65 @@ export default function Fehendhoo({}: Props) {
             />
           ))}
       </div>
-     
-      <div className="flex items-center justify-between mt-14 w-full">
+
+      <section className="mt-20">
         <div className="flex items-center gap-3">
           <PackageBox />
-          <p className="text-lg font-semibold whitespace-nowrap">Voting box</p>
+          <p className="text-xl font-semibold whitespace-nowrap">Insights</p>
         </div>
-        <div>
-          <Input
-            placeholder="Search..."
-            value={search}
-            width="w-[300px]"
-            onChange={(value) => setSearch(value)}
-          />
-        </div>
-      </div>
 
-      <div className="grid grid-cols-4 gap-6 mt-8">
-        {filteredItems && filteredItems.length > 0 ? (
-          filteredItems.map((item: any, index: number) => (
-            <BorderCard
-              key={index}
-              title={item.registered_box}
-              value={item.count}
-              party={false}
-              classNames="cursor-pointer"
-              onClick={() => {
-                setSelectedDhaairaa(item);
-                setDrawer(true);
-              }}
+        <div className="grid grid-cols-4 gap-6 mt-8">
+          {votingFor &&
+            votingFor.map((item: any, index: number) => (
+              <BorderCard
+                key={index}
+                title={item.voting_for}
+                value={item.count}
+                party={true}
+                onClick={() => {}}
+              />
+            ))}
+        </div>
+      </section>
+     
+      <section className="mt-20">
+        <div className="flex items-center justify-between mt-14 w-full">
+          <div className="flex items-center gap-3">
+            <PackageBox />
+            <p className="text-xl font-semibold whitespace-nowrap">
+              Voting box
+            </p>
+          </div>
+          <div>
+            <Input
+              placeholder="Search..."
+              value={search}
+              width="w-[300px]"
+              onChange={(value) => setSearch(value)}
             />
-          ))
-        ) : (
-          <p className="text-sm">No box's found.</p>
-        )}
-      </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-4 gap-6 mt-8">
+          {filteredItems && filteredItems.length > 0 ? (
+            filteredItems.map((item: any, index: number) => (
+              <BorderCard
+                key={index}
+                title={item.registered_box}
+                value={item.count}
+                party={false}
+                classNames="cursor-pointer"
+                onClick={() => {
+                  setSelectedDhaairaa(item);
+                  setDrawer(true);
+                }}
+              />
+            ))
+          ) : (
+            <p className="text-sm">No box's found.</p>
+          )}
+        </div>
+      </section>
 
       <Modal
         drawerOpen={drawer}

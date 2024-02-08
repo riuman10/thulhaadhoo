@@ -45,11 +45,8 @@ const Link = ({ name, onClick, selected, dashboard, icon = "Home" } : any) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="flex items-center gap-2">
-        {/* <Icon
-          name={icon}
-          stroke={isHovering || selected ? "#22C55E" : "#525252"}
-        /> */}
+      <div className="flex items-center gap-1">
+        <div className='w-12'>{icon}</div>
         <p
           className={`whitespace-nowrap pt-[2px] font-medium w-[200px] md:text-sm text-xs truncate ${
             selected

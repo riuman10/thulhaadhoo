@@ -14,6 +14,7 @@ function BorderCard({
   classNames = "",
 }: Props) {
 
+
   const partyLookUp: any = {
     jp: `Jumhooree Party`,
     pnf: `People's National Front`,
@@ -23,6 +24,13 @@ function BorderCard({
     pnc: `People's National Congress`,
     mnp: `Maldives National Party`,
     adhaalath: "Adhaalath Party",
+    kadde: "Kadde",
+    shafeeg: "Shafeeg",
+    shareef: "Shareef",
+    hannan: "Hannaan",
+    afrah: "Afrah",
+    thahle: "Thahleem",
+    "-": "Unknown or Not decided",
   };
 
   const partyColor: any = {
@@ -34,6 +42,13 @@ function BorderCard({
     pnc: `#69D8CB`,
     mnp: `#263F90`,
     adhaalath: "#63C355",
+    kadde: "#D63590",
+    shafeeg: "#FDE047",
+    shareef: "#FFFFFF",
+    hannan: "#FFFFFF",
+    afrah: "#63A8E1",
+    thahle: "#FFFFFF",
+    "-": "#FFFFFF",
   };
 
   return (
@@ -52,11 +67,11 @@ function BorderCard({
         ) : (
           <></>
         )}
-        <p className="text-sm leading-5 font-medium text-[0#D6D6D6]">
+        <p className="text-sm leading-5 font-medium text-[#D6D6D6]">
           {party ? partyLookUp[title] : title}
         </p>
       </div>
-      <p className="text-3xl font-semibold">{value}</p>
+      <p className="text-3xl font-semibold text-[#FCFCFC]">{value}</p>
     </div>
   );
 }

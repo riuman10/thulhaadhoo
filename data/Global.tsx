@@ -1,5 +1,7 @@
 import PartyPill from "@/components/global/PartyPill";
 import Tick from "@/components/icons/Tick";
+import VotersIcon from "@/components/icons/VotersIcon";
+import House from "@/components/icons/House";
 
 const TableFields = [
   { name: "ID", id: "nid" },
@@ -143,12 +145,12 @@ const Islands = [
 ];
 
 const NavigationLinks = [
-  { id: "home", name: "Dashboard", link: "/dashboard", icon: "Home" },
+  { id: "home", name: "Dashboard", link: "/dashboard", icon: <House /> },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: "Councillors",
+    icon: <VotersIcon />,
   }
 ];
 
