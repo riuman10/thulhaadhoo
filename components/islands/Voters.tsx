@@ -53,6 +53,7 @@ function Voters({
         onClose={() => setOpen(false)}
         title={selectedVoter.full_name}
         btnText="Update"
+        size="max-w-[540px]"
       >
         <VoterDetails
           item={selectedVoter}
