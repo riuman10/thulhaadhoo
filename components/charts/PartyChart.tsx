@@ -15,15 +15,16 @@ import {
 
 type Props = {
   series?: any;
+  dataKey? : string;
 };
 
-function PartyChart({ series = [] }: Props) {
+function PartyChart({ series = [], dataKey = "" }: Props) {
   return (
     <ResponsiveContainer width="95%" height={400}>
       <PieChart>
         <Pie
           data={series}
-          dataKey="party_count"
+          dataKey={dataKey}
           nameKey={"party_name"}
           fill="#8884d8"
         />

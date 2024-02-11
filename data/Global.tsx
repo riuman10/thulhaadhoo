@@ -54,6 +54,7 @@ const colorLookup: any = {
     hannan: "#FFFFFF",
     afrah: "#63A8E1",
     thahle: "#FFFFFF",
+    undecided: "#57534E",
     "-": "#FFFFFF",
 };
 

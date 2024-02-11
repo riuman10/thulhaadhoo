@@ -44,7 +44,7 @@ export default function AllIslands({}: Props) {
           <p className="text-lg font-medium">Party insights</p>
           <p className="text-sm">Lorem ipsum dolor sit amet consectetur.</p>
           <div className="flex items-center justify-center">
-            <PartyChart series={overview} />
+            <PartyChart series={overview} dataKey="party_count" />
           </div>
         </div>
         <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
