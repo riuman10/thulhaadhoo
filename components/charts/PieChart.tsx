@@ -17,9 +17,11 @@ function PieChart({
   const [chartData, setChartData] = useState<any>(false);
 
   const fetchData = async () => {
+    if (!viewName) return;
     const { data } = await supabase.from(`${viewName}`).select('*');
     let temp = data && data.filter((obj) => obj.party !== "unknown")
     setInsights(temp);
+    console.log(temp)
   };
 
 
@@ -75,7 +77,7 @@ function PieChart({
   return (
     <div>
       {
-        insights && chartData ? <ReactApexChart options={chartData.options} series={chartData.series} type="pie" width={380} /> : <></>
+        insights && chartData ? <ReactApexChart options={chartData.options} series={chartData.series} type="pie" width={480} /> : <></>
       }
     </div>
   );

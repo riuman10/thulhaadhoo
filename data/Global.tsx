@@ -39,41 +39,66 @@ const yesNo = [
   }
 ]
 
+const colorLookup: any = {
+    jp: `#D83731`,
+    pnf: `#D83731`,
+    democrats: `#63A8E1`,
+    mdp: `#FDE047`,
+    ppm: `#D63590`,
+    pnc: `#69D8CB`,
+    mnp: `#263F90`,
+    adhaalath: "#63C355",
+    kadde: "#D63590",
+    shafeeg: "#FDE047",
+    shareef: "#FFFFFF",
+    hannan: "#FFFFFF",
+    afrah: "#63A8E1",
+    thahle: "#FFFFFF",
+    "-": "#FFFFFF",
+};
+
 const Candidates = [
   {
     id: "kadde",
     name: "Kadde",
     from: "PPM / PNC",
+    color : "#D63590"
   },
   {
     id: "shafeeg",
     name: "Shafeeg",
     from: "MDP",
+    color : "#FDE047"
   },
   {
     id: "shareef",
     name: "Shareef",
     from: "Amilla",
+    color : "#FDE047"
   },
   {
     id: "thahle",
     name: "Thahle",
     from: "Amilla",
+    color : "#FDE047"
   },
   {
     id: "hannan",
     name: "Hannan",
     from: "Amilla",
+    color : "#FDE047"
   },
   {
     id: "afrah",
     name: "Afrah",
     from: "The Democrats",
+    color : "#FDE047"
   },
   {
     id: "undecided",
     name: "Undecided",
     from: "",
+    color : "#FDE047"
   },
 ];
 
@@ -154,4 +179,4 @@ const NavigationLinks = [
   }
 ];
 
-export { TableFields, Party , Islands, Candidates , yesNo, NavigationLinks };
+export { TableFields, Party , Islands, Candidates , yesNo, NavigationLinks , colorLookup};

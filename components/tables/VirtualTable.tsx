@@ -11,7 +11,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
     estimateSize: () => 35,
   });
 
-  const virtualItems = rowVirtualizer.getVirtualItems();
+  const virtualItems = rowVirtualizer.getVirtualItems(); 
 
   return (
     <div className="overflow-x-auto min-w-full rounded-md border border-[#292929]">
