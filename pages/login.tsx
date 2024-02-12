@@ -51,6 +51,7 @@ function Login({}: Props) {
             }}
             providers={["google", "apple", "twitter"]}
             theme="dark"
+            showLinks = {false}
           />
         </div>
       </main>
