@@ -64,6 +64,7 @@ export default function Thulhaadhoo({}: Props) {
 
   return (
     <div>
+      <p className="text-3xl font-bold leading-6 mb-8 text-center">Thulhaadhoo</p>
       <section className="grid grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium mb-1">Party insights</p>
