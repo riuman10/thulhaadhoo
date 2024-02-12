@@ -1,8 +1,10 @@
 import React from "react";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 import Navigation from "./Navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useUserStore } from "@/store";
+import { supabase } from "@/supabase";
 
 type Props = {
   children: any;
@@ -11,9 +13,26 @@ type Props = {
 function Layout({ children }: Props) {
   const router = useRouter();
   const [width, setWidth] = useState<any>(false);
+  const { user , setUser} = useUserStore();
+  const [loggedIn, setIsLoggedIn] = useState<any>(false);
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    setUser(false);
+    localStorage.clear();
+    router.push("/login");
+  };
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+    setIsLoggedIn(user);
+  }, [user]);
 
   const style = {
-    width: width ? `${width - 200}px` : "auto",
+    width:
+      router.asPath === "/login" ? "100%" : width ? `${width - 200}px` : "auto",
   };
 
   useLayoutEffect(() => {
@@ -29,9 +48,15 @@ function Layout({ children }: Props) {
 
   return (
     <div className="h-full w-full flex justify-between">
-      <div className="fixed bg-white h-screen w-[200px]">
-        <Navigation />
-      </div>
+      {router.asPath === "/login" ? (
+        <></>
+      ) : (
+        <div className="fixed bg-white h-screen w-[200px]">
+          <Navigation 
+          handleSignOut={logout}
+          />
+        </div>
+      )}
       <AnimatePresence mode="wait">
         <motion.div
           key={router.route}
@@ -55,7 +80,11 @@ function Layout({ children }: Props) {
           }}
         >
           <main
-            className={`ml-[200px] flex-1 container px-6 py-10 overflow-hidden`}
+            className={`${
+              router.asPath === "/login"
+                ? ""
+                : "ml-[200px] flex-1 container px-6 py-10 overflow-hidden"
+            }`}
             style={style}
           >
             {children}
