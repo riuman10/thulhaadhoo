@@ -1,11 +1,14 @@
 import { supabase } from "@/supabase";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { colorLookup } from "@/data/Global";
 const BorderCard = dynamic(() => import("../cards/BorderCard"));
 const Voters = dynamic(() => import("./Voters"));
 const PackageBox = dynamic(() => import("../icons/PackageBox"));
 const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
+const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
+const PartyChart = dynamic(() => import("../charts/PartyChart"));
 
 type Props = {};
 
@@ -20,7 +23,13 @@ export default function Goidhoo({}: Props) {
   const fetchData = async () => {
     const { data } = await supabase.from(`goidhoo_party_count`).select("*");
     let temp = data && data.filter((obj) => obj.party !== "unknown");
-    setOverview(temp);
+    const partyWithColors =
+      temp &&
+      temp.map((item) => ({
+        ...item,
+        fill: colorLookup[item.party] || "defaultColor",
+      }));
+    setOverview(partyWithColors);
   };
 
   const fetchBox = async () => {
@@ -30,9 +39,15 @@ export default function Goidhoo({}: Props) {
   };
 
   const fetchVotingFor = async () => {
-    const { data } = await supabase.from(`thulhaadhoo_voting_for`).select("*");
-    let temp = data && data.filter((obj) => obj.party !== "unknown");
-    setVotingFor(temp);
+    const { data } = await supabase.from(`goidhoo_voting_for`).select("*");
+    let temp = data && data.filter((obj) => obj.voting_for !== "-");
+    const candidatesWithColors =
+      temp &&
+      temp.map((item) => ({
+        ...item,
+        fill: colorLookup[item.voting_for] || "defaultColor",
+      }));
+    setVotingFor(candidatesWithColors);
   };
 
   const filteredItems =
@@ -49,6 +64,46 @@ export default function Goidhoo({}: Props) {
 
   return (
     <div>
+      <section className="grid grid-cols-2 gap-10">
+        <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
+          <p className="text-lg font-medium mb-1">Party insights</p>
+          <p className="text-sm mb-8">
+            Insights of all parties from B.Thulhaadhoo.
+          </p>
+          <div className="flex items-center justify-center">
+            <PartyChart series={overview} dataKey="count" />
+          </div>
+        </div>
+        <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
+          <p className="text-lg font-medium mb-1">Candidate insights</p>
+          <p className="text-sm mb-8">
+            Insights of all candidates from B.Thulhaadhoo
+          </p>
+          <CadidateChart series={votingFor} />
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <div className="flex items-center gap-3">
+          <PackageBox />
+          <p className="text-xl font-semibold whitespace-nowrap">
+            Party Insights
+          </p>
+        </div>
+
+        <div className="grid grid-cols-4 gap-6 mt-8">
+          {overview &&
+            overview.map((item: any, index: number) => (
+              <BorderCard
+                key={index}
+                title={item.party}
+                value={item.count}
+                party={true}
+              />
+            ))}
+        </div>
+      </section>
+
       <div className="grid grid-cols-4 gap-6">
         {overview &&
           overview.map((item: any, index: number) => (

@@ -30,7 +30,8 @@ function BorderCard({
     hannan: "Hannaan",
     afrah: "Afrah",
     thahle: "Thahleem",
-    "-": "Unknown or Not decided",
+    "-": "Unknown",
+    "undecided": "Undecided",
   };
 
   const partyColor: any = {
@@ -49,6 +50,7 @@ function BorderCard({
     afrah: "#63A8E1",
     thahle: "#FFFFFF",
     "-": "#FFFFFF",
+    "undecided": "#FFFFFF",
   };
 
   return (
