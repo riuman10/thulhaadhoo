@@ -1,6 +1,12 @@
-import {  createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode } from "react";
 import { NavigationLinks } from "@/data/Global";
 import { useRouter } from "next/router";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SidebarProps {
   children?: ReactNode;
@@ -47,7 +53,14 @@ const Link = ({ name, onClick, selected, dashboard, icon = "Home" }: any) => {
       onMouseLeave={() => setHover(false)}
     >
       <div className="flex flex-row gap-4">
-        <div>{icon}</div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>{icon}</TooltipTrigger>
+            <TooltipContent className="bg-[#292929] absolute -right-[120px]">
+              <p className="text-sm text-zinc-100 whitespace-nowrap">{name}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );

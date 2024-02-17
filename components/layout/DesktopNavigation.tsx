@@ -13,7 +13,7 @@ function DesktopNavigation({
   const router = useRouter();
   return (
     <>
-      <div className="w-full bg-[#0F0F0F] h-full py-2 flex flex-col justify-between px-4">
+      <div className="w-full bg-[#0F0F0F] h-screen py-2 flex flex-col justify-between px-4">
         <div className="flex flex-1 flex-col gap-2 mt-6 overflow-y-scroll">
           {NavigationLinks.map((item: any) => (
             <Link
