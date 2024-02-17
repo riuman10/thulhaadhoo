@@ -51,7 +51,7 @@ function Layout({ children }: Props) {
       {router.asPath === "/login" ? (
         <></>
       ) : (
-        <div className="fixed bg-[#0F0F0F] h-screen w-[60px] z-10">
+        <div className="fixed bg-[#0F0F0F] h-full w-[60px] z-10">
           <Navigation 
           handleSignOut={logout}
           />
