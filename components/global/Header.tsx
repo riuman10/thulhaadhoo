@@ -9,7 +9,7 @@ function Header({
 }: Props) {
   return (
     <div>
-      <p className='text-xl font-semibold'>{title}</p>
+      <p className='text-xl font-semibold text-zinc-100'>{title}</p>
     </div>
   )
 }

@@ -53,8 +53,8 @@ function DropDown({
               <div className="flex gap-2.5 items-center">
                 <p
                   className={`text-sm ${loading ? "opacity-80" : ""} ${
-                    placeholder ? "text-white" : ""
-                  } ${selectedItem ? "text-white font-medium capitalize" : ""}`}
+                    placeholder ? "text-zinc-100" : ""
+                  } ${selectedItem ? "text-zinc-100 font-medium capitalize" : ""}`}
                 >
                   {selectedItem ? selectedItem.name : placeholder}
                 </p>
@@ -94,7 +94,7 @@ function DropDown({
                     ) : (
                       <></>
                     )}
-                    <p className="text-sm">{item.name}</p>
+                    <p className="text-sm text-zinc-100">{item.name}</p>
                   </Combobox.Option>
                 ))}
             </Combobox.Options>

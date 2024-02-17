@@ -34,7 +34,7 @@ function Dashboard({}: Props) {
     <div className="h-full">
       <Header title="Dashboard" />
       <div className="flex flex-col gap-2 mt-10 mb-8">
-        <p className={`text-700 text-sm pb-1.5 font-medium`}>Select Island</p>
+        <p className={`text-zinc-100 text-sm pb-1.5 font-medium`}>Select Island</p>
         <div className="max-w-[300px]">
           <DropDown
             items={IslandDropdown}

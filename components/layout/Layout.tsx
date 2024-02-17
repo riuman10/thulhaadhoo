@@ -32,7 +32,7 @@ function Layout({ children }: Props) {
 
   const style = {
     width:
-      router.asPath === "/login" ? "100%" : width ? `${width - 200}px` : "auto",
+      router.asPath === "/login" ? "100%" : width ? `${width - 60}px` : "auto",
   };
 
   useLayoutEffect(() => {
@@ -51,7 +51,7 @@ function Layout({ children }: Props) {
       {router.asPath === "/login" ? (
         <></>
       ) : (
-        <div className="fixed bg-white h-screen w-[200px]">
+        <div className="fixed bg-[#0F0F0F] h-screen w-[60px] z-10">
           <Navigation 
           handleSignOut={logout}
           />
@@ -83,7 +83,7 @@ function Layout({ children }: Props) {
             className={`${
               router.asPath === "/login"
                 ? ""
-                : "ml-[200px] flex-1 container px-6 py-10 overflow-hidden"
+                : "ml-[60px] flex-1 px-6 py-10 overflow-hidden"
             }`}
             style={style}
           >

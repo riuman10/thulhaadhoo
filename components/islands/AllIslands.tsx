@@ -42,8 +42,8 @@ export default function AllIslands({}: Props) {
       <p className="text-3xl font-bold leading-6 mb-8 text-center">All islands</p>
       <section className="grid grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
-          <p className="text-lg font-medium">Party insights</p>
-          <p className="text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+          <p className="text-lg font-medium text-zinc-100">Party insights</p>
+          <p className="text-sm text-zinc-100">Lorem ipsum dolor sit amet consectetur.</p>
           <div className="flex items-center justify-center">
             <PartyChart series={overview} dataKey="party_count" />
           </div>

@@ -64,9 +64,9 @@ export default function Thulhaadhoo({}: Props) {
 
   return (
     <div>
-      <p className="text-3xl font-bold leading-6 mb-8 text-center">Thulhaadhoo</p>
-      <section className="grid grid-cols-2 gap-10">
-        <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
+      <p className="text-3xl font-bold leading-6 mb-8 text-center text-zinc-100">Thulhaadhoo</p>
+      <section className="w-full grid md:grid-cols-2 grid-cols-1 gap-10">
+        <div className="border border-[#292929b7] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium mb-1">Party insights</p>
           <p className="text-sm mb-8">
             Insights of all parties from B.Thulhaadhoo.
@@ -92,7 +92,7 @@ export default function Thulhaadhoo({}: Props) {
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
           {overview &&
             overview.map((item: any, index: number) => (
               <BorderCard
@@ -113,7 +113,7 @@ export default function Thulhaadhoo({}: Props) {
           </p>
         </div>
 
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
           {votingFor &&
             votingFor.map((item: any, index: number) => (
               <BorderCard
@@ -145,7 +145,7 @@ export default function Thulhaadhoo({}: Props) {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
           {filteredItems && filteredItems.length > 0 ? (
             filteredItems.map((item: any, index: number) => (
               <BorderCard
