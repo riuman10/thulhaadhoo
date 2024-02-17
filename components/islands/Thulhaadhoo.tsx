@@ -92,7 +92,7 @@ export default function Thulhaadhoo({}: Props) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-6 mt-8">
           {overview &&
             overview.map((item: any, index: number) => (
               <BorderCard
@@ -113,7 +113,7 @@ export default function Thulhaadhoo({}: Props) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-6 mt-8">
           {votingFor &&
             votingFor.map((item: any, index: number) => (
               <BorderCard
@@ -145,7 +145,7 @@ export default function Thulhaadhoo({}: Props) {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-6 mt-8">
+        <div className="grid md:grid-cols-4 grid-cols-1 gap-6 mt-8">
           {filteredItems && filteredItems.length > 0 ? (
             filteredItems.map((item: any, index: number) => (
               <BorderCard
