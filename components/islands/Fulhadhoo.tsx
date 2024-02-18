@@ -64,8 +64,8 @@ export default function Fulhadhoo({}: Props) {
 
   return (
     <div>
-      <p className="text-3xl font-bold leading-6 mb-8 text-center">Fulhadhoo</p>
-      <section className="grid grid-cols-2 gap-10">
+      <p className="text-xl md:text-3xl font-bold leading-6 mb-8 md:text-center text-left">Fulhadhoo</p>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium mb-1">Party insights</p>
           <p className="text-sm mb-8">
@@ -84,7 +84,7 @@ export default function Fulhadhoo({}: Props) {
         </div>
       </section>
 
-      <div className="grid grid-cols-4 gap-6 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
         {overview &&
           overview.map((item: any, index: number) => (
             <BorderCard
@@ -102,7 +102,7 @@ export default function Fulhadhoo({}: Props) {
           <p className="text-xl font-semibold whitespace-nowrap">Insights</p>
         </div>
 
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
           {votingFor &&
             votingFor.map((item: any, index: number) => (
               <BorderCard
@@ -128,13 +128,13 @@ export default function Fulhadhoo({}: Props) {
             <Input
               placeholder="Search..."
               value={search}
-              width="w-[300px]"
+              width="w-[200px] md:w-[300px]"
               onChange={(value) => setSearch(value)}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
           {filteredItems && filteredItems.length > 0 ? (
             filteredItems.map((item: any, index: number) => (
               <BorderCard

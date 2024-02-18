@@ -139,7 +139,7 @@ export default function Thulhaadhoo({}: Props) {
             <Input
               placeholder="Search..."
               value={search}
-              width="w-[300px]"
+              width="w-[200px] md:w-[300px]"
               onChange={(value) => setSearch(value)}
             />
           </div>
