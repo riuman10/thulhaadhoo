@@ -45,13 +45,13 @@ function Layout({ children }: Props) {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
-
+// bg-[#0F0F0F]
   return (
     <div className="h-full w-full flex justify-between">
       {router.asPath === "/login" ? (
         <></>
       ) : (
-        <div className="fixed bg-[#0F0F0F] h-full w-[60px] z-10">
+        <div className="fixed bg-red-800 h-screen w-[60px] z-10">
           <Navigation 
           handleSignOut={logout}
           />
@@ -83,7 +83,7 @@ function Layout({ children }: Props) {
             className={`${
               router.asPath === "/login"
                 ? ""
-                : "ml-[60px] flex-1 px-6 py-10 overflow-hidden"
+                : "ml-[60px] flex-1 px-6 py-10 overflow-y-scroll"
             }`}
             style={style}
           >

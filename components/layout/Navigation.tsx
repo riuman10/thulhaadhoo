@@ -16,7 +16,7 @@ function Navigation({ handleSignOut = () => {} }: Props) {
     <>
     <div>
         {/* <DesktopNavigation handleSignOut={handleSignOut} /> */}
-        <MobileNavigation />
+        <MobileNavigation handleSignOut={handleSignOut} />
     </div>
     </>
   );

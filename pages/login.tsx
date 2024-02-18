@@ -35,7 +35,7 @@ function Login({}: Props) {
   return (
     <div>
       <main className="flex items-center justify-center h-screen w-screen">
-        <div className="w-[400px]">
+        <div className="w-[300px] md:w-[400px]">
           <Auth
             supabaseClient={supabase}
             appearance={{
@@ -43,8 +43,8 @@ function Login({}: Props) {
               variables: {
                 default: {
                   colors: {
-                    brand: "#0EA5E9",
-                    brandAccent: "#0EA5E9",
+                    brand: "#EAB308",
+                    brandAccent: "#EAB308",
                   },
                 },
               },
