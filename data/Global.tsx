@@ -29,7 +29,7 @@ const TableFields = [
     name: "Remarks",
     id: "remarks",
     render: (item: any) => {
-      return <p className="w-[70px] truncate">{item.remarks}xxx</p>;
+      return <p className="w-[70px] truncate">{item.remarks}</p>;
     },
   },
 ];
