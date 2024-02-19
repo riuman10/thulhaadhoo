@@ -9,6 +9,7 @@ const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
+import { processCandidatesWithColors } from "@/helpers/islandFunctions";
 
 type Props = {};
 
@@ -41,13 +42,7 @@ export default function Goidhoo({}: Props) {
   const fetchVotingFor = async () => {
     const { data } = await supabase.from(`goidhoo_voting_for`).select("*");
     let temp = data && data.filter((obj) => obj.voting_for !== "-");
-    const candidatesWithColors =
-      temp &&
-      temp.map((item) => ({
-        ...item,
-        fill: colorLookup[item.voting_for] || "defaultColor",
-      }));
-    setVotingFor(candidatesWithColors);
+    setVotingFor(processCandidatesWithColors(temp));
   };
 
   const filteredItems =

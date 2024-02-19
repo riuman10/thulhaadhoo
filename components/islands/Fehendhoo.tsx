@@ -9,6 +9,7 @@ const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
+import { processCandidatesWithColors } from "@/helpers/islandFunctions";
 
 type Props = {};
 
@@ -19,7 +20,6 @@ export default function Fehendhoo({}: Props) {
   const [selectedDhaairaa, setSelectedDhaairaa] = useState<any>(false);
   const [drawer, setDrawer] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-  
 
   const fetchData = async () => {
     const { data } = await supabase.from(`fehendhoo_party_count`).select("*");
@@ -42,13 +42,7 @@ export default function Fehendhoo({}: Props) {
   const fetchVotingFor = async () => {
     const { data } = await supabase.from(`fehendhoo_voting_for`).select("*");
     let temp = data && data.filter((obj) => obj.voting_for !== "-");
-    const candidatesWithColors =
-      temp &&
-      temp.map((item) => ({
-        ...item,
-        fill: colorLookup[item.voting_for] || "defaultColor",
-      }));
-    setVotingFor(candidatesWithColors);
+    setVotingFor(processCandidatesWithColors(temp));
   };
 
   const filteredItems =
@@ -65,8 +59,10 @@ export default function Fehendhoo({}: Props) {
 
   return (
     <div>
-      <p className="text-xl md:text-3xl font-bold leading-6 mb-8 md:text-center text-left">Fehendhoo</p>
-       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <p className="text-xl md:text-3xl font-bold leading-6 mb-8 md:text-center text-left">
+        Fehendhoo
+      </p>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium mb-1">Party insights</p>
           <p className="text-sm mb-8">
@@ -115,7 +111,7 @@ export default function Fehendhoo({}: Props) {
             ))}
         </div>
       </section>
-     
+
       <section className="mt-20">
         <div className="flex items-center justify-between mt-14 w-full">
           <div className="flex items-center gap-3">

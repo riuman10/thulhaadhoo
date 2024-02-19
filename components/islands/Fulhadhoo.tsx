@@ -9,6 +9,8 @@ const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
+import { processCandidatesWithColors } from "@/helpers/islandFunctions";
+
 
 type Props = {};
 
@@ -40,14 +42,8 @@ export default function Fulhadhoo({}: Props) {
 
   const fetchVotingFor = async () => {
     const { data } = await supabase.from(`fulhadhoo_voting_for`).select("*");
-    let temp = data && data.filter((obj) => obj.party !== "unknown");
-    const candidatesWithColors =
-      temp &&
-      temp.map((item) => ({
-        ...item,
-        fill: colorLookup[item.voting_for] || "defaultColor",
-      }));
-    setVotingFor(candidatesWithColors);
+    let temp = data && data.filter((obj) => obj.voting_for !== "-");
+    setVotingFor(processCandidatesWithColors(temp));
   };
 
   const filteredItems =
