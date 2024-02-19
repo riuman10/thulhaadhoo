@@ -55,6 +55,7 @@ const colorLookup: any = {
     afrah: "#63A8E1",
     thahle: "#FFFFFF",
     undecided: "#57534E",
+    adam: "#D83731",
     "-": "#FFFFFF",
 };
 
@@ -94,6 +95,12 @@ const Candidates = [
     name: "Afrah",
     from: "The Democrats",
     color : "#FDE047"
+  },
+  {
+    id: "adam",
+    name: "Adam",
+    from: "PNF",
+    color : "#D83731"
   },
   {
     id: "undecided",
