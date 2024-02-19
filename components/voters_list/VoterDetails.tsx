@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
-import { Party, Candidates , yesNo} from "@/data/Global";
+import { Party, Candidates, yesNo } from "@/data/Global";
 import dynamic from "next/dynamic";
 const Input = dynamic(() => import("../inputs/Input"));
 const DropDown = dynamic(() => import("../global/DropDown"));
 const Radio = dynamic(() => import("../inputs/Radio"));
+const TextArea = dynamic(() => import("../inputs/TextArea"));
 
 type Props = {
   item: any;
@@ -21,9 +22,10 @@ function VoterDetails({
 }: Props) {
   const [idCard, setIdCard] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
+  const [remarks , setRemarks] = useState<string>("")
   const [party, setParty] = useState<any>(false);
   const [votingFor, setVotingFor] = useState<any>(false);
-  const [contacted , setContacted] = useState<any>(false);
+  const [contacted, setContacted] = useState<any>(false);
 
   const updateItem = async () => {
     const { data } = await supabase
@@ -32,9 +34,10 @@ function VoterDetails({
         nid: idCard,
         party: party ? party.id : "unknown",
         mobile_number: mobile,
+        remarks : remarks,
         voting_for: votingFor ? votingFor.id : "-",
-        approached : contacted.id === "true" ? true : false
-      }) 
+        approached: contacted.id === "true" ? true : false,
+      })
       .eq("id", item.id)
       .select();
     data ? onSuccess(data) : null;
@@ -51,6 +54,7 @@ function VoterDetails({
     setIdCard(item.nid);
     setMobile(item.mobile_number);
     setParty(item.party);
+    setRemarks(item.remarks);
     setVotingFor(
       item.voting_for !== "-"
         ? Candidates.find((x) => x.id === item.voting_for)
@@ -59,9 +63,9 @@ function VoterDetails({
   }, [item]);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="h-full flex flex-col gap-6">
       <div>
-        <div className="flex flex-col gap-6">
+        <div className="space-y-8">
           <Input
             placeholder="Hello"
             title="Name"
@@ -110,10 +114,22 @@ function VoterDetails({
       <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold mt-8">Contacted</p>
         <Radio
-          defaultSelected={item.approached !== undefined ? yesNo.find((x) => x.id === item.approached.toString()) : contacted}
+          defaultSelected={
+            item.approached !== undefined
+              ? yesNo.find((x) => x.id === item.approached.toString())
+              : contacted
+          }
           onChange={(x) => setContacted(x)}
           items={yesNo}
         />
+      </div>
+      <div className="flex flex-col gap-6 mb-10">
+      <TextArea
+        placeholder="type..."
+        title="Remarks"
+        value={remarks}
+        onChange={(value) => setRemarks(value)}
+      />
       </div>
       <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold mt-8">Voting for</p>
