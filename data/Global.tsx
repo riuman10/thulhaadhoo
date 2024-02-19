@@ -18,45 +18,53 @@ const TableFields = [
   },
   { name: "Registered Box", id: "registered_box" },
   { name: "Voting for", id: "voting_for" },
-  { name: "Contacted", 
+  {
+    name: "Contacted",
     id: "approached",
     render: (item: any) => {
-      return item.approached ? <Tick /> : <p>Not contacted</p> 
-    }
+      return item.approached ? <Tick /> : <p>Not contacted</p>;
+    },
+  },
+  {
+    name: "Remarks",
+    id: "remarks",
+    render: (item: any) => {
+      return <p className="line-clamp-1 truncate w-[70px]">{item.remarks}</p>;
+    },
   },
 ];
 
 const yesNo = [
   {
-    id : "true",
-    name : "Yes",
-    subtitle : "Contacted already"
+    id: "true",
+    name: "Yes",
+    subtitle: "Contacted already",
   },
   {
-    id : "false",
-    name : "No",
-    subtitle : "Not Contacted"
-  }
-]
+    id: "false",
+    name: "No",
+    subtitle: "Not Contacted",
+  },
+];
 
 const colorLookup: any = {
-    jp: `#D83731`,
-    pnf: `#D83731`,
-    democrats: `#63A8E1`,
-    mdp: `#FDE047`,
-    ppm: `#D63590`,
-    pnc: `#69D8CB`,
-    mnp: `#263F90`,
-    adhaalath: "#63C355",
-    kadde: "#D63590",
-    shafeeg: "#FDE047",
-    shareef: "#FFFFFF",
-    hannan: "#FFFFFF",
-    afrah: "#63A8E1",
-    thahle: "#FFFFFF",
-    undecided: "#57534E",
-    adam: "#D83731",
-    "-": "#FFFFFF",
+  jp: `#D83731`,
+  pnf: `#D83731`,
+  democrats: `#63A8E1`,
+  mdp: `#FDE047`,
+  ppm: `#D63590`,
+  pnc: `#69D8CB`,
+  mnp: `#263F90`,
+  adhaalath: "#63C355",
+  kadde: "#D63590",
+  shafeeg: "#FDE047",
+  shareef: "#FFFFFF",
+  hannan: "#FFFFFF",
+  afrah: "#63A8E1",
+  thahle: "#FFFFFF",
+  undecided: "#57534E",
+  adam: "#D83731",
+  "-": "#FFFFFF",
 };
 
 const Candidates = [
@@ -64,49 +72,49 @@ const Candidates = [
     id: "kadde",
     name: "Kadde",
     from: "PPM / PNC",
-    color : "#D63590"
+    color: "#D63590",
   },
   {
     id: "shafeeg",
     name: "Shafeeg",
     from: "MDP",
-    color : "#FDE047"
+    color: "#FDE047",
   },
   {
     id: "shareef",
     name: "Shareef",
     from: "Amilla",
-    color : "#FDE047"
+    color: "#FDE047",
   },
   {
     id: "thahle",
     name: "Thahle",
     from: "Amilla",
-    color : "#FDE047"
+    color: "#FDE047",
   },
   {
     id: "hannan",
     name: "Hannan",
     from: "Amilla",
-    color : "#FDE047"
+    color: "#FDE047",
   },
   {
     id: "afrah",
     name: "Afrah",
     from: "The Democrats",
-    color : "#FDE047"
+    color: "#FDE047",
   },
   {
     id: "adam",
     name: "Adam",
     from: "PNF",
-    color : "#D83731"
+    color: "#D83731",
   },
   {
     id: "undecided",
     name: "Undecided",
     from: "",
-    color : "#FDE047"
+    color: "#FDE047",
   },
 ];
 
@@ -184,7 +192,15 @@ const NavigationLinks = [
     name: "Voters List",
     link: "/voters-list",
     icon: <VotersIcon />,
-  }
+  },
 ];
 
-export { TableFields, Party , Islands, Candidates , yesNo, NavigationLinks , colorLookup};
+export {
+  TableFields,
+  Party,
+  Islands,
+  Candidates,
+  yesNo,
+  NavigationLinks,
+  colorLookup,
+};
