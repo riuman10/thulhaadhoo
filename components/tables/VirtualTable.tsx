@@ -46,7 +46,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       key={index}
-                      className={`px-6 py-4 whitespace-nowrap text-sm truncate max-w-[230px] sm:max-w-none cursor-pointer ${
+                      className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer ${
                         index === 0 ? "w-[50px] text-gray-100" : "text-gray-100"
                       }`}
                     >
