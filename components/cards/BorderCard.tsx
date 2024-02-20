@@ -30,6 +30,7 @@ function BorderCard({
     hannan: "Hannaan",
     afrah: "Afrah",
     thahle: "Thahleem",
+    adam: "Adam",
     "-": "Unknown",
     "undecided": "Undecided",
   };
