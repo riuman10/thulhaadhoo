@@ -7,21 +7,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import LogoutIcon from "../icons/Logout";
 import LogoutMobile from "../icons/LogoutMobile";
 interface SidebarProps {
   children?: ReactNode;
-  handleSignOut:() => void
-}
-
-interface SidebarContextType {
-  expanded: boolean;
+  handleSignOut: () => void;
 }
 
 export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
   const router = useRouter();
-
-  const [open, setOpen] = useState(true);
   return (
     <div className="w-full h-screen flex flex-col justify-between bg-[#0F0F0F]">
       <div className="flex flex-col gap-2 mt-6 overflow-y-scroll">
@@ -39,11 +32,11 @@ export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
         ))}
       </div>
       <div
-          className=" bg-[#292929] mb-4 flex items-center justify-center py-2 px-1 rounded-md cursor-pointer mx-2"
-          onClick={handleSignOut}
-        >
-          <LogoutMobile />
-        </div>
+        className=" bg-[#292929] mb-4 flex items-center justify-center py-2 px-1 rounded-md cursor-pointer mx-2"
+        onClick={handleSignOut}
+      >
+        <LogoutMobile />
+      </div>
     </div>
   );
 }

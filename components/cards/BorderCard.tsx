@@ -50,6 +50,7 @@ function BorderCard({
     hannan: "#FFFFFF",
     afrah: "#63A8E1",
     thahle: "#FFFFFF",
+    adam: "#FFFFFF",
     "-": "#FFFFFF",
     "undecided": "#FFFFFF",
   };

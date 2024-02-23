@@ -1,5 +1,6 @@
 import { Combobox, Transition } from "@headlessui/react";
 import { useState, Fragment, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 
 type Props = {
   items: any;
@@ -54,11 +55,14 @@ function DropDown({
                 <p
                   className={`text-sm ${loading ? "opacity-80" : ""} ${
                     placeholder ? "text-zinc-100" : ""
-                  } ${selectedItem ? "text-zinc-100 font-medium capitalize" : ""}`}
+                  } ${
+                    selectedItem ? "text-zinc-100 font-medium capitalize" : ""
+                  }`}
                 >
                   {selectedItem ? selectedItem.name : placeholder}
                 </p>
               </div>
+              <ChevronDown color="white" size={15} />
             </Combobox.Button>
           </div>
           <Transition
