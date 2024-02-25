@@ -35,8 +35,8 @@ function VotersList({}: Props) {
         ascending: true,
       });
 
-    if (island !== false && agent !== false) {
-      query = query.eq("island", island).eq("agent", agent);
+    if (island !== false) {
+      query = query.eq("island", island)
     }
 
     const { data } = await query.range(
@@ -83,11 +83,6 @@ function VotersList({}: Props) {
             buttons={Islands}
             active={island}
             onClick={(x: any) => setIsland(x.id)}
-          />
-           <Tabs
-            buttons={Agents}
-            active={agent}
-            onClick={(x: any) => setAgent(x.id)}
           />
         </div>
         <div className="flex gap-3 items-center mb-8">
