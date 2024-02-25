@@ -5,6 +5,9 @@ import House from "@/components/icons/House";
 
 const TableFields = [
   { name: "ID", id: "nid" },
+  { name: "Agent", id: "agent",render: (item: any) => {
+    return <p className="capitalize">{item.agent}</p>
+  }, },
   { name: "Name", id: "full_name" },
   { name: "Island", id: "island" },
   { name: "House Name", id: "house_name" },
@@ -118,6 +121,29 @@ const Candidates = [
   },
 ];
 
+const Agents = [
+  {
+    id: "mizzy",
+    name : "Mizzy"
+  },
+  {
+    id: "shehey",
+    name : "Shehey"
+  },
+  {
+    id: "atheef",
+    name : "Atheef"
+  },
+  {
+    id: "shafeeg",
+    name : "Shafeeg"
+  },
+  {
+    id: "-",
+    name : "No agent"
+  }
+]
+
 const Party = [
   {
     id: "mdp",
@@ -203,4 +229,5 @@ export {
   yesNo,
   NavigationLinks,
   colorLookup,
+  Agents
 };

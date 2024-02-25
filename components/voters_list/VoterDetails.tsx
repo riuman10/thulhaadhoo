@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
-import { Party, Candidates, yesNo } from "@/data/Global";
+import { Party, Candidates, yesNo , Agents} from "@/data/Global";
 import dynamic from "next/dynamic";
 const Input = dynamic(() => import("../inputs/Input"));
 const DropDown = dynamic(() => import("../global/DropDown"));
@@ -24,6 +24,7 @@ function VoterDetails({
   const [mobile, setMobile] = useState<string>("");
   const [remarks , setRemarks] = useState<string>("")
   const [party, setParty] = useState<any>(false);
+  const [agent, setAgent] = useState<any>(false)
   const [votingFor, setVotingFor] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
 
@@ -37,6 +38,7 @@ function VoterDetails({
         remarks : remarks,
         voting_for: votingFor ? votingFor.id : "-",
         approached: contacted.id === "true" ? true : false,
+        agent: agent ? agent.id : "-"
       })
       .eq("id", item.id)
       .select();
@@ -55,6 +57,7 @@ function VoterDetails({
     setMobile(item.mobile_number);
     setParty(item.party);
     setRemarks(item.remarks);
+    setAgent(item.agent);
     setVotingFor(
       item.voting_for !== "-"
         ? Candidates.find((x) => x.id === item.voting_for)
@@ -106,6 +109,16 @@ function VoterDetails({
               defaultSelected={Party.find((x) => x.id === item.party)}
               onSelect={(obj) => {
                 setParty(obj);
+              }}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
+            <DropDown
+              items={Agents}
+              defaultSelected={Agents.find((x) => x.id === item.agent)}
+              onSelect={(obj) => {
+                setAgent(obj);
               }}
             />
           </div>

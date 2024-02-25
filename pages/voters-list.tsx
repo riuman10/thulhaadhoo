@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import PieChart from "@/components/charts/PieChart";
-import { TableFields, Islands } from "@/data/Global";
+import { TableFields, Islands, Agents } from "@/data/Global";
 const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
 const VoterDetails = dynamic(() => import("@/components/voters_list/VoterDetails"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
@@ -25,6 +25,7 @@ function VotersList({}: Props) {
   const [selectedItem, setSelectedItem] = useState<any>(false);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [island, setIsland] = useState<any>(Islands[0].id);
+  const [agent , setAgent] = useState<any>(Agents[0].id);
 
   const fetchVoters = async () => {
     let query = supabase
@@ -34,8 +35,8 @@ function VotersList({}: Props) {
         ascending: true,
       });
 
-    if (island !== false) {
-      query = query.eq("island", island);
+    if (island !== false && agent !== false) {
+      query = query.eq("island", island).eq("agent", agent);
     }
 
     const { data } = await query.range(
@@ -67,7 +68,7 @@ function VotersList({}: Props) {
   useEffect(() => {
     setPageNumber(1);
     fetchVoters();
-  }, [island]);
+  }, [island , agent]);
 
   useEffect(() => {
     fetchVoters();
@@ -77,11 +78,16 @@ function VotersList({}: Props) {
       <Header title = "Voters list" />
       <div className="mt-8">
       <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-between">
-        <div>
+        <div className='flex h-[40px] gap-8'>
           <Tabs
             buttons={Islands}
             active={island}
             onClick={(x: any) => setIsland(x.id)}
+          />
+           <Tabs
+            buttons={Agents}
+            active={agent}
+            onClick={(x: any) => setAgent(x.id)}
           />
         </div>
         <div className="flex gap-3 items-center mb-8">
