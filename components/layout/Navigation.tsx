@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { NavigationLinks } from "@/data/Global";
 import { useRouter } from "next/router";
 import LogoutIcon from "../icons/Logout";
 import DesktopNavigation from "./DesktopNavigation";

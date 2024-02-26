@@ -1,7 +1,7 @@
 import { supabase } from "@/supabase";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { colorLookup } from "@/data/Global";
+import { Palmtree } from "lucide-react";
 const BorderCard = dynamic(() => import("../cards/BorderCard"));
 const Voters = dynamic(() => import("./Voters"));
 const PackageBox = dynamic(() => import("../icons/PackageBox"));
@@ -9,7 +9,7 @@ const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
-import { processCandidatesWithColors } from "@/helpers/islandFunctions";
+import { processCandidatesWithColors , putCandidateColors} from "@/helpers/islandFunctions";
 
 type Props = {};
 
@@ -24,13 +24,7 @@ export default function Fehendhoo({}: Props) {
   const fetchData = async () => {
     const { data } = await supabase.from(`fehendhoo_party_count`).select("*");
     let temp = data && data.filter((obj) => obj.party !== "unknown");
-    const partyWithColors =
-      temp &&
-      temp.map((item) => ({
-        ...item,
-        fill: colorLookup[item.party] || "defaultColor",
-      }));
-    setOverview(partyWithColors);
+    setOverview(putCandidateColors(temp));
   };
 
   const fetchBox = async () => {
@@ -59,9 +53,12 @@ export default function Fehendhoo({}: Props) {
 
   return (
     <div>
-      <p className="text-xl md:text-3xl font-bold leading-6 mb-8 md:text-center text-left">
-        Fehendhoo
-      </p>
+       <div className="flex flex-row items-center gap-3 mb-8">
+        <Palmtree size={25} stroke="#A3A3A3" />
+        <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC]">
+          Fehendhoo
+        </p>
+      </div>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium mb-1">Party insights</p>

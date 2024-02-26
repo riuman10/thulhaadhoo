@@ -1,11 +1,12 @@
 import { supabase } from "@/supabase";
 import { useState, useEffect } from "react";
 import BorderCard from "../cards/BorderCard";
-import PieChart from "../charts/PieChart";
 import PartyChart from "../charts/PartyChart";
 import CadidateChart from "../charts/CadidateChart";
-import { colorLookup } from "@/data/Global";
-import { processCandidatesWithColors } from "@/helpers/islandFunctions";
+import {
+  processCandidatesWithColors,
+  putCandidateColors,
+} from "@/helpers/islandFunctions";
 
 type Props = {};
 
@@ -16,13 +17,7 @@ export default function AllIslands({}: Props) {
   const fetchData = async () => {
     const { data } = await supabase.from(`party_count`).select("*");
     let temp = data && data.filter((obj) => obj.party !== "unknown");
-    const partyWithColors =
-      temp &&
-      temp.map((item) => ({
-        ...item,
-        fill: colorLookup[item.party] || "defaultColor",
-      }));
-    setOverview(partyWithColors);
+    setOverview(putCandidateColors(temp));
   };
 
   const fetchCandidates = async () => {
@@ -38,14 +33,14 @@ export default function AllIslands({}: Props) {
 
   return (
     <div className="h-full pb-10">
-      <p className="text-xl md:text-3xl font-bold leading-6 mb-8 md:text-center text-left">
-        All islands
-      </p>
+       <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC] mb-8">
+          All Islands
+        </p>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium text-zinc-100">Party insights</p>
           <p className="text-sm text-zinc-100">
-            Lorem ipsum dolor sit amet consectetur.
+            Insights of all the islands as a whole in the costituency.
           </p>
           <div className="flex items-center justify-center">
             <PartyChart series={overview} dataKey="party_count" />
@@ -54,7 +49,8 @@ export default function AllIslands({}: Props) {
         <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
           <p className="text-lg font-medium">Candidate insights</p>
           <p className="text-sm mb-8">
-            Lorem ipsum dolor sit amet consectetur.
+            Insights of all the candidates and vote count from the whole
+            costituency.
           </p>
           <CadidateChart series={candidateInsights} />
         </div>

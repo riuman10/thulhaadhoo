@@ -1,14 +1,17 @@
 import React from 'react'
 
 type Props = {
-  title : string
+  title : string,
+  icon? : any
 }
 
 function Header({
-  title = ""
+  title = "",
+  icon = <></>
 }: Props) {
   return (
-    <div>
+    <div className='flex flex-row gap-2 items-center'>
+      {icon}
       <p className='text-xl font-semibold text-zinc-100'>{title}</p>
     </div>
   )

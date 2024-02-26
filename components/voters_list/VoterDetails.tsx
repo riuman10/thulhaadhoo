@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabase";
-import { Party, Candidates, yesNo , Agents} from "@/data/Global";
+import { Party, Candidates, yesNo, Agents } from "@/data/Global";
 import dynamic from "next/dynamic";
 const Input = dynamic(() => import("../inputs/Input"));
 const DropDown = dynamic(() => import("../global/DropDown"));
@@ -22,9 +22,9 @@ function VoterDetails({
 }: Props) {
   const [idCard, setIdCard] = useState<string>("");
   const [mobile, setMobile] = useState<string>("");
-  const [remarks , setRemarks] = useState<string>("")
+  const [remarks, setRemarks] = useState<string>("");
   const [party, setParty] = useState<any>(false);
-  const [agent, setAgent] = useState<any>(false)
+  const [agent, setAgent] = useState<any>(false);
   const [votingFor, setVotingFor] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
 
@@ -35,10 +35,10 @@ function VoterDetails({
         nid: idCard,
         party: party ? party.id : "unknown",
         mobile_number: mobile,
-        remarks : remarks,
+        remarks: remarks,
         voting_for: votingFor ? votingFor.id : "-",
         approached: contacted.id === "true" ? true : false,
-        agent: agent ? agent.id : "-"
+        agent: agent ? agent.id : "-",
       })
       .eq("id", item.id)
       .select();
@@ -137,12 +137,12 @@ function VoterDetails({
         />
       </div>
       <div className="flex flex-col gap-6 mb-10">
-      <TextArea
-        placeholder="type..."
-        title="Remarks"
-        value={remarks}
-        onChange={(value) => setRemarks(value)}
-      />
+        <TextArea
+          placeholder="type..."
+          title="Remarks"
+          value={remarks}
+          onChange={(value) => setRemarks(value)}
+        />
       </div>
       <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold mt-8">Voting for</p>

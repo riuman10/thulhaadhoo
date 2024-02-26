@@ -3,35 +3,49 @@ import { useRouter } from "next/navigation";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/supabase";
+import { useUserStore } from "@/store";
 
 type Props = {};
 
 function Login({}: Props) {
   const router = useRouter();
-  const [session, setSession] = useState<any>(false);
+  const { session, user, setUser, setSession } = useUserStore();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      getUser(session?.user?.id);
     });
-
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      console.log(_event);
+      if (_event === "SIGNED_IN") {
+        setSession(session);
+        getUser(session?.user?.id);
+      } else return;
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
+  const getUser = async (id: any) => {
+    if (!id) return;
+    const { data } = await supabase.from("users").select("*").eq("id", id);
+    if (data) {
+      setUser(data ? data[0] : false);
+    }
+  };
+
   useEffect(() => {
-    if (!session) {
+    if (!user) {
       return;
     }
-    if (session) {
+    if (user) {
       router.push("/dashboard");
     }
-  }, [session]);
+  }, [user]);
+
   return (
     <div>
       <main className="flex items-center justify-center h-screen w-screen">
@@ -51,7 +65,7 @@ function Login({}: Props) {
             }}
             providers={["google", "apple", "twitter"]}
             theme="dark"
-            showLinks = {false}
+            showLinks={true}
           />
         </div>
       </main>

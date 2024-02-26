@@ -1,13 +1,16 @@
 import PartyPill from "@/components/global/PartyPill";
 import Tick from "@/components/icons/Tick";
-import VotersIcon from "@/components/icons/VotersIcon";
-import House from "@/components/icons/House";
+import { Home, Vote, Users } from "lucide-react";
 
 const TableFields = [
   { name: "ID", id: "nid" },
-  { name: "Agent", id: "agent",render: (item: any) => {
-    return <p className="capitalize">{item.agent}</p>
-  }, },
+  {
+    name: "Agent",
+    id: "agent",
+    render: (item: any) => {
+      return <p className="capitalize">{item.agent}</p>;
+    },
+  },
   { name: "Name", id: "full_name" },
   { name: "Island", id: "island" },
   { name: "House Name", id: "house_name" },
@@ -47,6 +50,17 @@ const yesNo = [
     id: "false",
     name: "No",
     subtitle: "Not Contacted",
+  },
+];
+
+const roles = [
+  {
+    id: "agent",
+    name: "Agent",
+  },
+  {
+    id: "admin",
+    name: "Admin",
   },
 ];
 
@@ -124,25 +138,25 @@ const Candidates = [
 const Agents = [
   {
     id: "mizzy",
-    name : "Mizzy"
+    name: "Mizzy",
   },
   {
     id: "shehey",
-    name : "Shehey"
+    name: "Shehey",
   },
   {
     id: "atheef",
-    name : "Atheef"
+    name: "Atheef",
   },
   {
     id: "shafeeg",
-    name : "Shafeeg"
+    name: "Shafeeg",
   },
   {
     id: "-",
-    name : "No agent"
-  }
-]
+    name: "No agent",
+  },
+];
 
 const Party = [
   {
@@ -211,13 +225,39 @@ const Islands = [
   },
 ];
 
-const NavigationLinks = [
-  { id: "home", name: "Dashboard", link: "/dashboard", icon: <House /> },
+const adminNavigationLinks = [
+  {
+    id: "home",
+    name: "Dashboard",
+    link: "/dashboard",
+    icon: <Home stroke="#A3A3A3" />,
+  },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: <VotersIcon />,
+    icon: <Vote stroke="#A3A3A3" />,
+  },
+  {
+    id: "users",
+    name: "Users",
+    link: "/users",
+    icon: <Users stroke="#A3A3A3" />,
+  },
+];
+
+const agentNavigationLinks = [
+  {
+    id: "home",
+    name: "Dashboard",
+    link: "/dashboard",
+    icon: <Home stroke="#A3A3A3" />,
+  },
+  {
+    id: "voters_list",
+    name: "Voters List",
+    link: "/voters-list",
+    icon: <Vote stroke="#A3A3A3" />,
   },
 ];
 
@@ -227,7 +267,9 @@ export {
   Islands,
   Candidates,
   yesNo,
-  NavigationLinks,
+  agentNavigationLinks,
+  adminNavigationLinks,
   colorLookup,
-  Agents
+  Agents,
+  roles,
 };

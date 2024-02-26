@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import PieChart from "@/components/charts/PieChart";
 import { TableFields, Islands, Agents } from "@/data/Global";
+import SolidTabs from '@/components/global/SolidTabs';
 const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
 const VoterDetails = dynamic(() => import("@/components/voters_list/VoterDetails"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
@@ -25,7 +26,6 @@ function VotersList({}: Props) {
   const [selectedItem, setSelectedItem] = useState<any>(false);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [island, setIsland] = useState<any>(Islands[0].id);
-  const [agent , setAgent] = useState<any>(Agents[0].id);
 
   const fetchVoters = async () => {
     let query = supabase
@@ -68,20 +68,17 @@ function VotersList({}: Props) {
   useEffect(() => {
     setPageNumber(1);
     fetchVoters();
-  }, [island , agent]);
+  }, [island]);
 
-  useEffect(() => {
-    fetchVoters();
-  }, []);
   return (
     <div>
       <Header title = "Voters list" />
       <div className="mt-8">
       <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-between">
         <div className='flex h-[40px] gap-8'>
-          <Tabs
-            buttons={Islands}
-            active={island}
+          <SolidTabs
+            tabs={Islands}
+            activeTab={island}
             onClick={(x: any) => setIsland(x.id)}
           />
         </div>

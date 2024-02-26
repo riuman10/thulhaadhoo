@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavigationLinks } from '@/data/Global';
+import { agentNavigationLinks } from '@/data/Global';
 import { useRouter } from "next/router";
 import LogoutIcon from '../icons/Logout';
 
@@ -15,7 +15,7 @@ function DesktopNavigation({
     <>
       <div className="w-full bg-[#0F0F0F] h-screen py-2 flex flex-col justify-between px-4">
         <div className="flex flex-1 flex-col gap-2 mt-6 overflow-y-scroll">
-          {NavigationLinks.map((item: any) => (
+          {agentNavigationLinks.map((item: any) => (
             <Link
               key={item.id}
               name={item.name}

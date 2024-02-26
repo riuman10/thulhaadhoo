@@ -10,6 +10,16 @@ const customOrder = [
   "adam",
 ];
 
+const putCandidateColors = (temp : any) => {
+  const items = temp &&
+  temp.map((item : any) => ({
+    ...item,
+    fill: colorLookup[item.party] || "defaultColor",
+  }));
+
+  return items
+}
+
 function processCandidatesWithColors(temp: any) {
   const items = temp.map((item: any) => ({
     ...item,
@@ -23,4 +33,4 @@ function processCandidatesWithColors(temp: any) {
   return items;
 }
 
-export { processCandidatesWithColors };
+export { processCandidatesWithColors , putCandidateColors};
