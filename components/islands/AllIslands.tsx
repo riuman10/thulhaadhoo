@@ -13,6 +13,7 @@ type Props = {};
 export default function AllIslands({}: Props) {
   const [overview, setOverview] = useState<any>([]);
   const [candidateInsights, setCadidateInsights] = useState<any>([]);
+  const [registeredVoters, setRegisteredVoters] = useState<any>([]);
 
   const fetchData = async () => {
     const { data } = await supabase.from(`party_count`).select("*");
@@ -26,16 +27,24 @@ export default function AllIslands({}: Props) {
     setCadidateInsights(processCandidatesWithColors(temp));
   };
 
+  const fetchVotersByIsland = async () => {
+    const { data } = await supabase
+      .from(`registered_voters_by_island`)
+      .select("*");
+    setRegisteredVoters(data);
+  };
+
   useEffect(() => {
     fetchData();
     fetchCandidates();
+    fetchVotersByIsland();
   }, []);
 
   return (
     <div className="h-full pb-10">
-       <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC] mb-8">
-          All Islands
-        </p>
+      <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC] mb-8">
+        All Islands
+      </p>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
           <p className="text-lg font-medium text-zinc-100">Party insights</p>
@@ -56,17 +65,39 @@ export default function AllIslands({}: Props) {
         </div>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
-        {overview &&
-          overview.map((item: any, index: number) => (
-            <BorderCard
-              key={index}
-              title={item.party}
-              value={item.party_count}
-              party
-            />
-          ))}
-      </div>
+      <section className="space-y-6 mt-10">
+        <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC]">
+          Registered Voters
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+          {registeredVoters &&
+            registeredVoters.map((item: any, index: number) => (
+              <BorderCard
+                key={index}
+                title={item.island}
+                value={item.total_registered}
+                party={false}
+              />
+            ))}
+        </div>
+      </section>
+
+      <section className="space-y-6 mt-10">
+        <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC]">
+          Party headcount
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+          {overview &&
+            overview.map((item: any, index: number) => (
+              <BorderCard
+                key={index}
+                title={item.party}
+                value={item.party_count}
+                party
+              />
+            ))}
+        </div>
+      </section>
     </div>
   );
 }

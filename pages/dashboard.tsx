@@ -1,14 +1,12 @@
 import { useState } from "react";
-import Header from "@/components/global/Header";
-import { IslandDropdown } from "@/data/Dashboard";
 import dynamic from "next/dynamic";
-import { GaugeCircle } from 'lucide-react';
 const DropDown = dynamic(() => import("@/components/global/DropDown"));
 const Thulhaadhoo = dynamic(() => import("@/components/islands/Thulhaadhoo"));
 const Goidhoo = dynamic(() => import("@/components/islands/Goidhoo"));
 const Fehendhoo = dynamic(() => import("@/components/islands/Fehendhoo"));
 const Fulhadhoo = dynamic(() => import("@/components/islands/Fulhadhoo"));
 const AllIslands = dynamic(() => import("@/components/islands/AllIslands"));
+import { IslandDropdown } from "@/data/Dashboard";
 import { useUserStore } from "@/store";
 
 type Props = {};
@@ -35,21 +33,22 @@ function Dashboard({}: Props) {
   };
   return (
     <div className="h-full">
-      <p className="text-3xl pb-8 font-medium text-gray-200 border-b border-[#424242] leading-6">Hello, {user?.first_name}</p>
+      <p className="text-3xl pb-8 font-medium text-gray-200 border-b border-[#424242] leading-6">
+        Hello, {user?.first_name}
+      </p>
 
       <div className="flex items-center justify-between mb-8 pt-4">
-      {/* <Header title="Dashboard"  icon={<GaugeCircle stroke="#A3A3A3" size={19} />}/> */}
-      <p></p>
-      <div className="flex flex-row items-center gap-6">
-        <p className={`text-zinc-100 text-sm font-medium`}>Select Island :</p>
-        <div className="w-[300px]">
-          <DropDown
-            items={IslandDropdown}
-            defaultSelected={selectedIsland}
-            onSelect={(x) => setSelectedIsland(x)}
-          />
+        <p></p>
+        <div className="flex flex-row items-center gap-6">
+          <p className={`text-zinc-100 text-sm font-medium`}>Select Island :</p>
+          <div className="w-[300px]">
+            <DropDown
+              items={IslandDropdown}
+              defaultSelected={selectedIsland}
+              onSelect={(x) => setSelectedIsland(x)}
+            />
+          </div>
         </div>
-      </div>
       </div>
       {Components(selectedIsland?.id)}
     </div>

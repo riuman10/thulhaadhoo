@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, cloneElement } from "react";
 import Button from "../buttons/Button";
 import Close from "../icons/Close";
 
@@ -12,10 +12,9 @@ interface ModalProps {
   edit?: boolean;
   size?: string;
   showBorder?: boolean;
-  hideAction?: boolean;
   btnText?: string;
   processing?: boolean;
-  showButton? : boolean
+  showButton?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -28,8 +27,7 @@ const Modal: React.FC<ModalProps> = ({
   size = "max-w-[400px]",
   showBorder = false,
   btnText,
-  hideAction = false,
-  showButton = true
+  showButton = true,
 }) => {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -130,43 +128,37 @@ const Modal: React.FC<ModalProps> = ({
                         onClose();
                       }}
                     >
-                      {/* <Icon
-                        name="actions/Close"
-                        stroke={dark ? "#FFF" : "#737373"}
-                      /> */}
                       <Close />
                     </button>
                   </div>
                   <div className="py-8 px-6">
-                    {React.cloneElement(children, { ...props })}
+                    {cloneElement(children, { ...props })}
                   </div>
                 </div>
-                {
-                  showButton ? (
-                    <div
-                  className={`fixed w-screen ${size} py-6 px-8 gap-4 border-t border-[#292929] bg-[#141414] bg-25 z-30 bottom-0 flex justify-end`}
-                >
-                  <Button
-                    name="Cancel"
-                    disabled={loading}
-                    theme="ghost"
-                    onSelect={() => {
-                      handleToggle();
-                      setCancel(true);
-                    }}
-                  />
-                  <Button
-                    theme="default"
-                    loading={loading}
-                    disabled={loading}
-                    name={btnText ? btnText : edit ? "Update" : "Add"}
-                    onSelect={() => {
-                      !loading && drawerOpen && setConfirm(true);
-                    }}
-                  />
-                </div>
-                  ) : null
-                }
+                {showButton ? (
+                  <div
+                    className={`fixed w-screen ${size} py-6 px-8 gap-4 border-t border-[#292929] bg-[#141414] bg-25 z-30 bottom-0 flex justify-end`}
+                  >
+                    <Button
+                      name="Cancel"
+                      disabled={loading}
+                      theme="ghost"
+                      onSelect={() => {
+                        handleToggle();
+                        setCancel(true);
+                      }}
+                    />
+                    <Button
+                      theme="default"
+                      loading={loading}
+                      disabled={loading}
+                      name={btnText ? btnText : edit ? "Update" : "Add"}
+                      onSelect={() => {
+                        !loading && drawerOpen && setConfirm(true);
+                      }}
+                    />
+                  </div>
+                ) : null}
               </div>
             </Transition.Child>
           </div>
