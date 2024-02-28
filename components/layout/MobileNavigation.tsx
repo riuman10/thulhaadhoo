@@ -21,6 +21,7 @@ export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
   const lookup: any = {
     agent: agentNavigationLinks,
     admin: adminNavigationLinks,
+    super_admin : adminNavigationLinks,
     default: [],
   };
   return (

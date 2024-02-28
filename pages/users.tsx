@@ -3,6 +3,7 @@ import Header from "@/components/global/Header";
 import { supabase } from "@/supabase";
 import dynamic from "next/dynamic";
 import { Plus } from "lucide-react";
+import { useUserStore } from "@/store";
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
 const Modal = dynamic(() => import("@/components/global/Modal"));
 const CreateUser = dynamic(() => import("@/components/users/CreateUser"));
@@ -13,6 +14,7 @@ function Users({}: Props) {
   const [users, setUsers] = useState<any>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<any>(false);
+  const { user } = useUserStore();
 
   const fetchUsers = async () => {
     const { data } = await supabase.from("users").select("*");
@@ -52,13 +54,17 @@ function Users({}: Props) {
 
   return (
     <div className="space-y-6">
-      <button
-        onClick={() => setOpen(true)}
-        className="text-white bg-[#292929] py-2 px-2  text-sm rounded-lg flex items-center gap-2"
-      >
-        <Plus size={14} />
-        <p>Add</p>
-      </button>
+      {user && user.role === "super_admin" ? (
+        <button
+          onClick={() => setOpen(true)}
+          className="text-white bg-[#292929] py-2 px-2  text-sm rounded-lg flex items-center gap-2"
+        >
+          <Plus size={14} />
+          <p>Add</p>
+        </button>
+      ) : (
+        ""
+      )}
       <Header title={"Users"} />
 
       <VirtualTable

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 const DropDown = dynamic(() => import("@/components/global/DropDown"));
 const Thulhaadhoo = dynamic(() => import("@/components/islands/Thulhaadhoo"));
@@ -12,7 +12,8 @@ import { useUserStore } from "@/store";
 type Props = {};
 
 function Dashboard({}: Props) {
-  const [selectedIsland, setSelectedIsland] = useState(IslandDropdown[0]);
+  const [selectedIsland, setSelectedIsland] = useState<any>(IslandDropdown[0]);
+  const [islands, setIslands] = useState<any>([]);
   const { user } = useUserStore();
 
   const Components = (island: string) => {
@@ -31,6 +32,28 @@ function Dashboard({}: Props) {
         return <></>;
     }
   };
+
+  function getUserIsland() {
+    if (user && user.role == "agent" && user.island) {
+      let temp = IslandDropdown.find((x) => x.id === user.island);
+      setIslands([...islands, temp]);
+      return;
+    } else {
+      setIslands(IslandDropdown);
+      return;
+    }
+  }
+
+  useEffect(() => {
+    if (user && user.role === "agent" && user.island) {
+      let temp = IslandDropdown.find((x) => x.id == user.island);
+      setSelectedIsland(temp);
+    } else {
+      setSelectedIsland(IslandDropdown[0]);
+    }
+    getUserIsland();
+  }, []);
+
   return (
     <div className="h-full">
       <p className="text-3xl pb-8 font-medium text-gray-200 border-b border-[#424242] leading-6">
@@ -43,7 +66,7 @@ function Dashboard({}: Props) {
           <p className={`text-zinc-100 text-sm font-medium`}>Select Island :</p>
           <div className="w-[300px]">
             <DropDown
-              items={IslandDropdown}
+              items={islands}
               defaultSelected={selectedIsland}
               onSelect={(x) => setSelectedIsland(x)}
             />

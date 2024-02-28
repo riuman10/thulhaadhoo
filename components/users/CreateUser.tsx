@@ -5,6 +5,7 @@ import { roles, Islands } from "@/data/Global";
 import Input from "../inputs/Input";
 import DropDown from "../global/DropDown";
 import { useUserStore } from "@/store";
+import { toast } from "sonner";
 
 type Props = {
   item: any;
@@ -52,7 +53,7 @@ function CreateUser({
         id_card: idCard,
         email_address: email,
         password: password,
-        role: role ? role.id : "admin",
+        role: role ? role.id : "agent",
         island: island ? island.id : null,
       })
       .eq("id", id)
@@ -61,8 +62,10 @@ function CreateUser({
   };
 
   const handleValidation = () => {
-    if (firstName && lastName && email && password) {
+    if (firstName && lastName && email && password && role) {
       signUpUser();
+    } else {
+      toast.error("Required fields are missing")
     }
   };
   useEffect(() => {
