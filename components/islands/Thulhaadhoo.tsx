@@ -32,8 +32,7 @@ export default function Thulhaadhoo({}: Props) {
 
   const fetchData = async () => {
     const { data } = await supabase.from(`thulhaadhoo_party`).select("*");
-    let temp =
-      data && data.length > 0 && data.filter((obj) => obj.party !== "unknown");
+    let temp = data && data.length > 0 && data.filter((obj) => obj.party !== "unknown");
     setOverview(putCandidateColors(temp));
   };
 

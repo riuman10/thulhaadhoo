@@ -34,10 +34,13 @@ export default CadidateChart;
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   let partyName = payload[0]?.payload?.voting_for;
+  let percentage = payload[0]?.payload?.percentage;
   if (active && payload && payload.length) {
     return (
-      <div className="bg-black px-4 py-2 rounded-xl">
+      <div className="bg-black px-4 py-2 rounded-xl flex items-center gap-3">
         <p className="text-white uppercase">{`${partyName} : ${payload[0].value}`}</p>
+        <p>|</p>
+        <p className="text-white uppercase">{`${percentage}%`}</p>
       </div>
     );
   }

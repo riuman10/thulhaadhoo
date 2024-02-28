@@ -10,18 +10,30 @@ const customOrder = [
   "adam",
 ];
 
-const putCandidateColors = (temp : any) => {
-  const items = temp &&
-  temp.map((item : any) => ({
-    ...item,
-    fill: colorLookup[item.party] || "defaultColor",
+const putCandidateColors = (temp: any) => {
+  const totalCount = temp.reduce((acc: any, obj: any) => acc + obj.count, 0);
+  const objectsWithPercentage = temp.map((obj: any) => ({
+    ...obj,
+    percentage: Number(((obj.count / totalCount) * 100).toFixed(2)),
   }));
+  const items =
+  objectsWithPercentage &&
+  objectsWithPercentage.map((item: any) => ({
+      ...item,
+      fill: colorLookup[item.party] || "defaultColor",
+    }));
 
-  return items
-}
+  return items;
+};
 
 function processCandidatesWithColors(temp: any) {
-  const items = temp.map((item: any) => ({
+  const totalCount = temp.reduce((acc: any, obj: any) => acc + obj.count, 0);
+  const objectsWithPercentage = temp.map((obj: any) => ({
+    ...obj,
+    percentage: Number(((obj.count / totalCount) * 100).toFixed(2)),
+  }));
+
+  const items = objectsWithPercentage.map((item: any) => ({
     ...item,
     fill: colorLookup[item.voting_for] || "defaultColor",
   }));
@@ -33,4 +45,4 @@ function processCandidatesWithColors(temp: any) {
   return items;
 }
 
-export { processCandidatesWithColors , putCandidateColors};
+export { processCandidatesWithColors, putCandidateColors };
