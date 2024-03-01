@@ -66,7 +66,7 @@ function VoterDetails({
   }, [item]);
 
   return (
-    <div className="h-full flex flex-col gap-6">
+    <div className="h-full flex flex-col gap-6 bg-white">
       <div>
         <div className="space-y-8">
           <Input

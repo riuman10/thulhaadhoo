@@ -21,8 +21,8 @@ function CadidateChart({ series = [] }: Props) {
     <ResponsiveContainer width="95%" height={400}>
       <BarChart data={series}>
         <Bar dataKey="count" fill="#8884d8" barSize={30} radius={5} />
-        <XAxis dataKey="voting_for" tickLine={false} stroke="white" />
-        <YAxis tickLine={false} stroke="white" />
+        <XAxis dataKey="voting_for" tickLine={false} stroke="#737373" />
+        <YAxis tickLine={false} stroke="#737373" />
         <CartesianGrid opacity={0.1} />
         <Tooltip content={<CustomTooltip />} cursor={false} />
       </BarChart>

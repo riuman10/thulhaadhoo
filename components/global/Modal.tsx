@@ -104,17 +104,17 @@ const Modal: React.FC<ModalProps> = ({
               >
                 <div
                   className={`${
-                    !showButton ? "h-full" : "h-[calc(100%-86px)]"
-                  }  flex flex-col bg-[#141414] shadow-xl overflow-y-scroll scrollBarHide pb-[100px]`}
+                    !showButton ? "h-full" : "h-[calc(100%-70px)]"
+                  }  flex flex-col bg-white shadow-xl overflow-y-scroll scrollBarHide pb-[100px]`}
                 >
                   <div
-                    className={`flex justify-between py-6 pl-8 pr-5 border-b border-[#292929] bg-[#141414]  items-center sticky top-0 bg-25 z-30 ${
+                    className={`flex justify-between py-6 pl-8 pr-5 border-b border-gray-300 bg-white  items-center sticky top-0 bg-25 z-30 ${
                       showBorder ? "" : ""
                     }`}
                   >
-                    <div className="flex flex-col bg-[#141414]">
+                    <div className="flex flex-col bg-white">
                       {title ? (
-                        <p className="text-xl font-semibold text-900">
+                        <p className="text-xl font-medium text-900">
                           {" "}
                           {title}{" "}
                         </p>
@@ -137,7 +137,7 @@ const Modal: React.FC<ModalProps> = ({
                 </div>
                 {showButton ? (
                   <div
-                    className={`fixed w-screen ${size} py-6 px-8 gap-4 border-t border-[#292929] bg-[#141414] bg-25 z-30 bottom-0 flex justify-end`}
+                    className={`fixed w-screen ${size} py-4 px-8 gap-4 border-t border-gray-300 bg-white bg-25 z-30 bottom-0 flex justify-between items-center`}
                   >
                     <Button
                       name="Cancel"

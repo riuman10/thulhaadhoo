@@ -55,23 +55,23 @@ export default function Fulhadhoo({}: Props) {
     <div>
       <div className="flex flex-row items-center gap-3 mb-8">
         <Palmtree size={25} stroke="#A3A3A3" />
-        <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC]">
+        <p className="text-xl md:text-2xl font-medium leading-6 text-left text-gray-900">
           Fulhadhoo
         </p>
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
+        <div className="border border-gray-300 w-full p-6 flex flex-col rounded-xl bg-white">
           <p className="text-lg font-medium mb-1">Party insights</p>
-          <p className="text-sm mb-8">
+          <p className="text-sm mb-8 text-gray-400">
             Insights of all parties from B.Thulhaadhoo.
           </p>
           <div className="flex items-center justify-center">
             <PartyChart series={overview} dataKey="count" />
           </div>
         </div>
-        <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
+        <div className="border border-gray-300 w-full p-6 flex-1 flex flex-col rounded-xl bg-white">
           <p className="text-lg font-medium mb-1">Candidate insights</p>
-          <p className="text-sm mb-8">
+          <p className="text-sm mb-8 text-gray-400">
             Insights of all candidates from B.Thulhaadhoo
           </p>
           <CadidateChart series={votingFor} />

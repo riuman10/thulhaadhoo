@@ -56,14 +56,19 @@ function Dashboard({}: Props) {
 
   return (
     <div className="h-full">
-      <p className="text-3xl pb-8 font-medium text-gray-200 border-b border-[#424242] leading-6">
-        Hello, {user?.first_name}
-      </p>
+      <div className="flex flex-col gap-3 pb-8 border-b border-gray-200">
+        <p className="text-3xl font-medium text-zinc-900 leading-6">
+          Hello, {user?.first_name}
+        </p>
+        <p className="text-zinc-400 text-sm">
+          Insights of Thulhaadhoo dhaaira for 2024
+        </p>
+      </div>
 
       <div className="flex items-center justify-between mb-8 pt-4">
         <p></p>
         <div className="flex flex-row items-center gap-6">
-          <p className={`text-zinc-100 text-sm font-medium`}>Select Island :</p>
+          <p className={`text-zinc-900 text-sm font-medium`}>Select Island :</p>
           <div className="w-[300px]">
             <DropDown
               items={islands}

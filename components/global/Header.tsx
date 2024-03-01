@@ -12,7 +12,7 @@ function Header({
   return (
     <div className='flex flex-row gap-2 items-center'>
       {icon}
-      <p className='text-xl font-semibold text-zinc-100'>{title}</p>
+      <p className='text-xl font-semibold text-zinc-900'>{title}</p>
     </div>
   )
 }

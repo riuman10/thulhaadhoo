@@ -4,14 +4,11 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useEffect } from "react";
 import { supabase } from "@/supabase";
-import PieChart from "@/components/charts/PieChart";
 import { useUserStore } from "@/store";
 import { TableFields, Islands, Agents } from "@/data/Global";
 import SolidTabs from "@/components/global/SolidTabs";
 const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
-const VoterDetails = dynamic(
-  () => import("@/components/voters_list/VoterDetails")
-);
+const VoterDetails = dynamic(() => import("@/components/voters_list/VoterDetails"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
 const Modal = dynamic(() => import("@/components/global/Modal"));
 const Input = dynamic(() => import("@/components/inputs/Input"));
@@ -129,7 +126,7 @@ function VotersList({}: Props) {
         ) : (
           <div className="w-full flex items-center justify-center">
             <div
-              className=" bg-[#141414] px-4 text-center mt-10 rounded-xl cursor-pointer py-2"
+              className=" bg-white px-4 text-center mt-10 rounded-xl cursor-pointer py-2"
               onClick={() => setPageNumber(pageNumber + 1)}
             >
               <ChevronDown />

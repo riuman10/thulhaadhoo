@@ -10,7 +10,7 @@ const ChevronDown = (props: SVGProps<SVGSVGElement>) => (
   >
     <path
       fill="none"
-      stroke="white"
+      stroke="black"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

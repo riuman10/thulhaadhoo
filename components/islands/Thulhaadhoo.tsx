@@ -9,7 +9,7 @@ const Input = dynamic(() => import("../inputs/Input"));
 const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
-const HouseVoters = dynamic(() => import("./HouseVoters")); 
+const HouseVoters = dynamic(() => import("./HouseVoters"));
 import {
   processCandidatesWithColors,
   putCandidateColors,
@@ -26,13 +26,13 @@ export default function Thulhaadhoo({}: Props) {
   const [drawer, setDrawer] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [houseSearch, setHouseSearch] = useState<string>("");
-  const [houseDrawer , setHouseDrawer] = useState<boolean>(false);
+  const [houseDrawer, setHouseDrawer] = useState<boolean>(false);
   const [selectedHouse, setSelectedHouse] = useState<any>(false);
-
 
   const fetchData = async () => {
     const { data } = await supabase.from(`thulhaadhoo_party`).select("*");
-    let temp = data && data.length > 0 && data.filter((obj) => obj.party !== "unknown");
+    let temp =
+      data && data.length > 0 && data.filter((obj) => obj.party !== "unknown");
     setOverview(putCandidateColors(temp));
   };
 
@@ -76,23 +76,27 @@ export default function Thulhaadhoo({}: Props) {
     <div>
       <div className="flex flex-row items-center gap-3 mb-8">
         <Palmtree size={25} stroke="#A3A3A3" />
-        <p className="text-xl md:text-2xl font-medium leading-6 md:text-left text-left text-zinc-100">
+        <p className="text-xl md:text-2xl font-medium leading-6 md:text-left text-left text-zinc-900">
           Thulhaadhoo
         </p>
       </div>
       <section className="w-full grid md:grid-cols-2 grid-cols-1 gap-10">
-        <div className="border border-[#292929b7] w-full p-6 flex flex-col rounded-xl">
-          <p className="text-lg font-medium mb-1">Party insights</p>
-          <p className="text-sm mb-8">
+        <div className="border border-gray-200 w-full p-6 flex flex-col rounded-xl bg-white">
+          <p className="text-lg font-medium mb-1 text-zinc-900">
+            Party insights
+          </p>
+          <p className="text-sm mb-8 text-zinc-400">
             Insights of all parties from B.Thulhaadhoo.
           </p>
           <div className="flex items-center justify-center">
             <PartyChart series={overview} dataKey="count" />
           </div>
         </div>
-        <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
-          <p className="text-lg font-medium mb-1">Candidate insights</p>
-          <p className="text-sm mb-8">
+        <div className="border border-gray-200 w-full p-6 flex-1 flex flex-col rounded-xl bg-white">
+          <p className="text-lg font-medium mb-1 text-zinc-900">
+            Candidate insights
+          </p>
+          <p className="text-sm mb-8 text-zinc-400">
             Insights of all candidates from B.Thulhaadhoo
           </p>
           <CadidateChart series={votingFor} />
@@ -181,7 +185,7 @@ export default function Thulhaadhoo({}: Props) {
         </div>
       </section>
 
-      <section className="my-20 border-t-2 border-[#292929] pt-10">
+      <section className="my-20 border-t border-gray-200 pt-10">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-3">
             <Home stroke="#A3A3A3" size={23} />
@@ -235,7 +239,11 @@ export default function Thulhaadhoo({}: Props) {
         showButton={false}
         size="max-w-[900px]"
       >
-        <HouseVoters item={selectedHouse} island="B. Thulhaadhoo" onSuccess={() => {}} />
+        <HouseVoters
+          item={selectedHouse}
+          island="B. Thulhaadhoo"
+          onSuccess={() => {}}
+        />
       </Modal>
     </div>
   );

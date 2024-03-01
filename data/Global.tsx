@@ -230,19 +230,19 @@ const adminNavigationLinks = [
     id: "home",
     name: "Dashboard",
     link: "/dashboard",
-    icon: <Home stroke="#A3A3A3" />,
+    icon: <Home stroke="#71717A" />,
   },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: <Vote stroke="#A3A3A3" />,
+    icon: <Vote stroke="#71717A" />,
   },
   {
     id: "users",
     name: "Users",
     link: "/users",
-    icon: <Users stroke="#A3A3A3" />,
+    icon: <Users stroke="#71717A" />,
   },
 ];
 
@@ -251,13 +251,13 @@ const agentNavigationLinks = [
     id: "home",
     name: "Dashboard",
     link: "/dashboard",
-    icon: <Home stroke="#A3A3A3" />,
+    icon: <Home stroke="#71717A" />,
   },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: <Vote stroke="#A3A3A3" />,
+    icon: <Vote stroke="#71717A" />,
   },
 ];
 

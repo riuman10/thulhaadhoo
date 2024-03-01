@@ -33,24 +33,6 @@ const Radio: React.FC<RadioProps> = ({
     selected && onChange(selected);
   }, [selected]);
 
-  const themes: any = {
-    default: ` ${
-      disabled
-        ? "bg-200 cursor-not-allowed"
-        : "bg-primary-600 cursor-pointer hover:bg-primary-700"
-    }`,
-    delete: `${
-      disabled
-        ? "bg-200 cursor-not-allowed"
-        : " bg-red-300 text-gray-100 hover:bg-red-700"
-    }`,
-    ghost: `${
-      disabled
-        ? "bg-200 cursor-not-allowed"
-        : "bg-transparent cursor-pointer hover:bg-50"
-    }`,
-  };
-
   const textTheme: any = {
     default: `${disabled ? "text-white" : "text-400"}`,
     delete: `${disabled ? "text-white" : "text-100"}`,
@@ -74,8 +56,8 @@ const Radio: React.FC<RadioProps> = ({
             value={item}
             className={({active, checked}) =>
               ` ${active ? "bg-50" : ""}
-                ${selected?.id == item.id ? "bg-10 ring-2 ring-red-600 border-transparent" : "bg-transparent b-100"}
-                flex cursor-pointer p-4  focus:outline-none m-1 border border-[#292929] rounded-lg
+                ${selected?.id == item.id ? "bg-white ring-2 ring-yellow-400 border-transparent" : "bg-gray-50 b-100"}
+                flex cursor-pointer p-4  focus:outline-none m-1 border border-gray-100 rounded-lg
               `
             }
           >
@@ -90,8 +72,8 @@ const Radio: React.FC<RadioProps> = ({
                     <div className="text-sm">
                       <RadioGroup.Label
                         as="p"
-                        className={`font-medium ${textTheme[theme]} ${
-                          selected?.id == item.id ? "text-700" : ""
+                        className={`font-medium text-base ${textTheme[theme]} ${
+                          selected?.id == item.id ? "text-gray-700" : ""
                         }`}
                       >
                         {item.name}

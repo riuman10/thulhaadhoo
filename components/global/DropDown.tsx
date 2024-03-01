@@ -33,7 +33,7 @@ function DropDown({
   }, [defaultSelected]);
 
   return (
-    <div className="relative border border-[#292929] rounded-lg">
+    <div className="relative border border-gray-300 rounded-lg">
       <Combobox
         value={selectedItem}
         disabled={disabled}
@@ -49,20 +49,20 @@ function DropDown({
             <Combobox.Button
               className={`w-full relative flex gap-2 items-center justify-between pl-[10px] pr-[17px] py-2 ${
                 disabled ? "cursor-not-allowed" : ""
-              } bg-[#121212]`}
+              } bg-white`}
             >
               <div className="flex gap-2.5 items-center">
                 <p
                   className={`text-sm ${loading ? "opacity-80" : ""} ${
-                    placeholder ? "text-zinc-100" : ""
+                    placeholder ? "text-zinc-500" : ""
                   } ${
-                    selectedItem ? "text-zinc-100 font-medium capitalize" : ""
+                    selectedItem ? "text-zinc-900 font-medium capitalize" : ""
                   }`}
                 >
                   {selectedItem ? selectedItem.name : placeholder}
                 </p>
               </div>
-              <ChevronDown color="white" size={15} />
+              <ChevronDown color="black" size={15} />
             </Combobox.Button>
           </div>
           <Transition
@@ -75,14 +75,14 @@ function DropDown({
             leaveTo="transform opacity-0 -translate-y-[5px]"
           >
             <Combobox.Options
-              className={`absolute ${position} shadow-lg py-1 z-20 mt-1 px-1 w-full max-h-60 rounded-lg  overflow-y-scroll bg-[#141414]`}
+              className={`absolute ${position} shadow-lg py-1 z-20 mt-1 px-1 w-full max-h-60 rounded-lg  overflow-y-scroll bg-white`}
             >
               {items &&
                 items.map((item: any, index: number) => (
                   <Combobox.Option
                     key={index}
                     className={({ active }) =>
-                      `cursor-pointer flex items-center gap-3 w-full rounded py-2 px-3 text-700 hover:bg-[#424242] ${
+                      `cursor-pointer flex items-center gap-3 w-full rounded py-2 px-3 text-gray-900 hover:bg-[#F5F5F5] ${
                         active ? "bg-100" : ""
                       }`
                     }
@@ -98,7 +98,7 @@ function DropDown({
                     ) : (
                       <></>
                     )}
-                    <p className="text-sm text-zinc-100">{item.name}</p>
+                    <p className="text-sm text-zinc-900">{item.name}</p>
                   </Combobox.Option>
                 ))}
             </Combobox.Options>

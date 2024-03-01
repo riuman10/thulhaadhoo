@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 p {
-  color : #FAFAFA
+  color : black;
 }
 
 body {
-  background: #141414
+  /* background: #141414 */
+  background: #FBFBFB;
 }
 
 @layer utilities {

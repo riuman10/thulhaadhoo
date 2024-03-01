@@ -11,30 +11,30 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
     estimateSize: () => 35,
   });
 
-  const virtualItems = rowVirtualizer.getVirtualItems(); 
+  const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <div className="overflow-x-auto min-w-full rounded-md border border-[#292929]">
+    <div className="overflow-x-auto min-w-full rounded-md border border-white">
       <table
         ref={parentRef}
-        className="w-full divide-y divide-[#292929] bg-[#141414] overflow-hidden"
+        className="w-full divide-y  bg-[#141414] overflow-hidden"
       >
         <thead className="">
-          <tr className="bg-[#292929]">
+          <tr className="bg-[#F7F7F7]">
             {tableFields.map((header: any, index: number) => (
               <th
                 key={index}
                 scope="col"
-                className={`whitespace-nowrap px-6 py-3 text-left text-xs font-medium  tracking-wider border-b border-[#292929]`}
+                className={`whitespace-nowrap px-6 py-3 text-left text-xs font-medium  tracking-wider`}
               >
-                <p className={`text-xs font-semibold text-gray-100`}>
+                <p className={`text-xs font-semibold text-gray-500`}>
                   {header.name}
                 </p>
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className={`bg-[#141414] relative divide-y divide-[#292929]`}>
+        <tbody className={`bg-white relative divide-y divide-gray-200`}>
           {virtualItems.map((virtualItem, index) => {
             const listItem = data[index];
             return (
@@ -47,7 +47,9 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       key={index}
                       className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer ${
-                        index === 0 ? "w-[50px] text-gray-100" : "text-gray-100"
+                        index === 0
+                          ? "w-[50px] text-gray-900"
+                          : "text-gray-800 font-medium"
                       }`}
                     >
                       {header.render
