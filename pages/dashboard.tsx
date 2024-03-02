@@ -13,8 +13,9 @@ type Props = {};
 
 function Dashboard({}: Props) {
   const [selectedIsland, setSelectedIsland] = useState<any>(IslandDropdown[0]);
-  const [islands, setIslands] = useState<any>([]);
-  const { user } = useUserStore();
+const [islands, setIslands] = useState<any>([])
+  const { user , session} = useUserStore();
+
 
   const Components = (island: string) => {
     switch (island) {

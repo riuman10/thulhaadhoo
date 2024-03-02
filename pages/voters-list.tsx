@@ -7,6 +7,7 @@ import { supabase } from "@/supabase";
 import { useUserStore } from "@/store";
 import { TableFields, Islands, Agents } from "@/data/Global";
 import SolidTabs from "@/components/global/SolidTabs";
+// import useSupabase from "@/components/hooks/useSupabase";
 const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
 const VoterDetails = dynamic(() => import("@/components/voters_list/VoterDetails"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
@@ -19,6 +20,7 @@ const PAGE_SIZE = 25;
 type Props = {};
 
 function VotersList({}: Props) {
+  // const { supabase } = useSupabase();
   const [loading, setLoading] = useState<boolean>(false);
   const [voters, setVoters] = useState<any>([]);
   const [search, setSearch] = useState<string>("");
