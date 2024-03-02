@@ -57,10 +57,10 @@ function Users({}: Props) {
       {user && user.role === "super_admin" ? (
         <button
           onClick={() => setOpen(true)}
-          className="text-white bg-[#292929] py-2 px-2  text-sm rounded-lg flex items-center gap-2"
+          className=" bg-[#292929] py-2 px-2  text-sm rounded-lg flex items-center gap-2"
         >
-          <Plus size={14} />
-          <p>Add</p>
+          <Plus size={14} stroke="white" />
+          <p className="text-white">Add</p>
         </button>
       ) : (
         ""

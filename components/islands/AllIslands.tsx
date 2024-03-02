@@ -42,22 +42,22 @@ export default function AllIslands({}: Props) {
 
   return (
     <div className="h-full pb-10">
-      <p className="text-xl md:text-2xl font-medium leading-6 text-left text-[#FCFCFC] mb-8">
+      <p className="text-xl md:text-2xl font-medium leading-6 text-left text-zinc-900 mb-8">
         All Islands
       </p>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="border border-[#292929] w-full p-6 flex flex-col rounded-xl">
-          <p className="text-lg font-medium text-zinc-100">Party insights</p>
-          <p className="text-sm text-zinc-100">
+        <div className="border border-gray-200 w-full p-6 flex flex-col rounded-xl">
+          <p className="text-lg font-medium text-zinc-900">Party insights</p>
+          <p className="text-sm text-zinc-400">
             Insights of all the islands as a whole in the costituency.
           </p>
           <div className="flex items-center justify-center">
             <PartyChart series={overview} dataKey="party_count" />
           </div>
         </div>
-        <div className="border border-[#292929] w-full p-6 flex-1 flex flex-col rounded-xl">
-          <p className="text-lg font-medium">Candidate insights</p>
-          <p className="text-sm mb-8">
+        <div className="border border-gray-200 w-full p-6 flex-1 flex flex-col rounded-xl">
+          <p className="text-lg font-medium text-zinc-900">Candidate insights</p>
+          <p className="text-sm mb-8 text-zinc-400">
             Insights of all the candidates and vote count from the whole
             costituency.
           </p>

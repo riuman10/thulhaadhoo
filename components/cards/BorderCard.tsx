@@ -46,13 +46,13 @@ function BorderCard({
     adhaalath: "#63C355",
     kadde: "#D63590",
     shafeeg: "#FDE047",
-    shareef: "#FFFFFF",
-    hannan: "#FFFFFF",
+    shareef: "#E7E5E4",
+    hannan: "#E7E5E4",
     afrah: "#63A8E1",
-    thahle: "#FFFFFF",
-    adam: "#FFFFFF",
-    "-": "#FFFFFF",
-    "undecided": "#FFFFFF",
+    thahle: "#E7E5E4",
+    adam: "#E7E5E4",
+    "-": "#E7E5E4",
+    "undecided": "#E7E5E4",
   };
 
   return (

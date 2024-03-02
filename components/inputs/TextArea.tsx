@@ -33,7 +33,7 @@ function TextArea({
           }`}
         >
           <textarea
-            className={`focus:outline-none text-sm w-full text-white placeholder:text-[#A3A3A3] bg-white min-h-[100px] ${
+            className={`focus:outline-none text-sm w-full text-gray-900 placeholder:text-[#A3A3A3] bg-white min-h-[100px] ${
               disabled ? "bg-gray-300" : ""
             }`}
             autoComplete="off"

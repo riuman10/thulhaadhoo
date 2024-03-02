@@ -1,6 +1,6 @@
 import PartyPill from "@/components/global/PartyPill";
 import Tick from "@/components/icons/Tick";
-import { Home, Vote, Users } from "lucide-react";
+import { Home, Vote, Users , X} from "lucide-react";
 
 const TableFields = [
   { name: "ID", id: "nid" },
@@ -28,7 +28,7 @@ const TableFields = [
     name: "Contacted",
     id: "approached",
     render: (item: any) => {
-      return item.approached ? <Tick /> : <p>Not contacted</p>;
+      return item.approached ? <Tick /> : <Tick background="#FEE6E8" stroke="#F2454D" />;
     },
   },
   {
@@ -75,13 +75,13 @@ const colorLookup: any = {
   adhaalath: "#63C355",
   kadde: "#D63590",
   shafeeg: "#FDE047",
-  shareef: "#FFFFFF",
-  hannan: "#FFFFFF",
+  shareef: "#E7E5E4",
+  hannan: "#E7E5E4",
   afrah: "#63A8E1",
-  thahle: "#FFFFFF",
+  thahle: "#E7E5E4",
   undecided: "#57534E",
   adam: "#D83731",
-  "-": "#FFFFFF",
+  "-": "#E7E5E4",
 };
 
 const Candidates = [

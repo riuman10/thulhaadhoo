@@ -14,7 +14,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
   const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <div className="overflow-x-auto min-w-full rounded-md border border-white">
+    <div className="overflow-x-auto min-w-full rounded-md border border-gray-200">
       <table
         ref={parentRef}
         className="w-full divide-y  bg-[#141414] overflow-hidden"
@@ -46,7 +46,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       key={index}
-                      className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer ${
+                      className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer capitalize ${
                         index === 0
                           ? "w-[50px] text-gray-900"
                           : "text-gray-800 font-medium"
