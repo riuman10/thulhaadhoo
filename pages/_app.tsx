@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Head>
+        <meta charSet="UTF-8" />
         <title>Thulhaadhoo Dhaairaa 2024</title>
       </Head>
       <Component {...pageProps} />

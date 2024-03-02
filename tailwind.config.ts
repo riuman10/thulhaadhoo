@@ -18,6 +18,12 @@ const config = {
       },
     },
     extend: {
+      fontFamily : {
+        akuru: ["akuru", "sans-serif"],
+        rasmee: ["Rasmee", "sans-serif"],
+        haluvidhaa: ["Haluvidhaa", "sans-serif"],
+        huseynu: ["Huseynu", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

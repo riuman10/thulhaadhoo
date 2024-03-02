@@ -6,6 +6,25 @@ p {
   color : black;
 }
 
+@font-face {
+	font-family: "Akuru";
+	src: url("/fonts/akuru.ttf");
+}
+
+@font-face {
+	font-family: "Rasmee";
+	src: url("/fonts/AK Rasmee.ttf");
+}
+
+@font-face {
+	font-family: "Huseynu";
+	src: url("/fonts/MageyHuseynu-Regular.otf");
+}
+
+.akuru {
+  font-family: "Haluvidhaa";
+}
+
 body {
   /* background: #141414 */
   background: #FBFBFB;

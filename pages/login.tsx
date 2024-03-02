@@ -48,24 +48,29 @@ function Login({}: Props) {
 
   return (
     <div>
-      <main className="flex items-center justify-center h-screen w-screen">
+      <main className="flex items-center justify-center h-screen w-screen bg-gradient-to-b from-white via-white to-yellow-200">
         <div className="w-[300px] md:w-[400px]">
+          <p className="text-6xl font-huseynu text-yellow-400 text-center leading-10 mb-8">ތުޅާދޫ ދާއިރާ</p>
           <Auth
             supabaseClient={supabase}
             appearance={{
               theme: ThemeSupa,
+              style: {
+                input : {background: "white", borderRadius : "8px"},
+                button : {borderRadius : "8px"}
+              },
               variables: {
                 default: {
                   colors: {
-                    brand: "#EAB308",
-                    brandAccent: "#EAB308",
+                    brand: "#0A0A0A",
+                    brandAccent: "#0A0A0A",
                   },
                 },
               },
             }}
             providers={["google", "apple", "twitter"]}
-            theme="dark"
-            showLinks={true}
+            theme="light"
+            showLinks={false}
           />
         </div>
       </main>
