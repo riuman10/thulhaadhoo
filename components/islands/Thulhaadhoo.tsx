@@ -50,7 +50,8 @@ export default function Thulhaadhoo({}: Props) {
 
   const fetchHouses = async () => {
     const { data } = await supabase.from(`thulhaadhoo_house_count`).select("*");
-    setHouses(data);
+    let sorted = data && data.sort((a, b) => a.house_name.localeCompare(b.house_name));
+    setHouses(sorted);
   };
 
   const filteredItems =
