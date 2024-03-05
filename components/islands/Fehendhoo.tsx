@@ -10,7 +10,7 @@ const Modal = dynamic(() => import("../global/Modal"));
 const CadidateChart = dynamic(() => import("../charts/CadidateChart"));
 const PartyChart = dynamic(() => import("../charts/PartyChart"));
 const HouseVoters = dynamic(() => import("./HouseVoters"));
-import { processCandidatesWithColors , putCandidateColors} from "@/helpers/islandFunctions";
+import { processCandidatesWithColors, putCandidateColors} from "@/helpers/islandFunctions";
 
 type Props = {};
 
@@ -25,7 +25,6 @@ export default function Fehendhoo({}: Props) {
   const [houseSearch, setHouseSearch] = useState<string>("");
   const [selectedHouse, setSelectedHouse] = useState<any>(false);
   const [houseDrawer, setHouseDrawer] = useState<boolean>(false);
-
 
 
   const fetchData = async () => {
