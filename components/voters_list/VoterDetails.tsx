@@ -79,8 +79,6 @@ function VoterDetails({
     setHasAccess(user && (user.role === "admin" || user.role === "super_admin"));
   }, [user]);
 
-  console.log(hasAccess)
-
   return (
     <div className="h-full flex flex-col gap-6 bg-white">
       <div>

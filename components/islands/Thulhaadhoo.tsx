@@ -228,7 +228,7 @@ export default function Thulhaadhoo({}: Props) {
         onClose={() => setDrawer(false)}
         title={selectedDhaairaa.registered_box}
         showButton={false}
-        size="max-w-[900px]"
+        size="max-w-[1400px]"
       >
         <Voters item={selectedDhaairaa} onSuccess={() => {}} />
       </Modal>
@@ -238,7 +238,7 @@ export default function Thulhaadhoo({}: Props) {
         onClose={() => setHouseDrawer(false)}
         title={selectedHouse.house_name}
         showButton={false}
-        size="max-w-[900px]"
+        size="max-w-[1400px]"
       >
         <HouseVoters
           item={selectedHouse}
