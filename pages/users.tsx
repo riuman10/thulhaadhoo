@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Header from "@/components/global/Header";
 import { supabase } from "@/supabase";
 import dynamic from "next/dynamic";
 import { Plus } from "lucide-react";
 import { useUserStore } from "@/store";
+const Header = dynamic(() => import("@/components/global/Header"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
 const Modal = dynamic(() => import("@/components/global/Modal"));
 const CreateUser = dynamic(() => import("@/components/users/CreateUser"));

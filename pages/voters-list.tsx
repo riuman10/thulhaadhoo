@@ -1,19 +1,17 @@
 import React from "react";
-import Header from "@/components/global/Header";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useEffect } from "react";
 import { supabase } from "@/supabase";
 import { useUserStore } from "@/store";
 import { TableFields, Islands, Agents } from "@/data/Global";
-import SolidTabs from "@/components/global/SolidTabs";
-// import useSupabase from "@/components/hooks/useSupabase";
+const Header = dynamic(() => import("@/components/global/Header"));
+const SolidTabs = dynamic(() => import("@/components/global/SolidTabs"));
 const ChevronDown = dynamic(() => import("@/components/icons/ChevronDown"));
 const VoterDetails = dynamic(() => import("@/components/voters_list/VoterDetails"));
 const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
 const Modal = dynamic(() => import("@/components/global/Modal"));
 const Input = dynamic(() => import("@/components/inputs/Input"));
-const Tabs = dynamic(() => import("@/components/global/Tabs"));
 
 const PAGE_SIZE = 25;
 
