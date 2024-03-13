@@ -1,15 +1,8 @@
 import React from "react";
 import {
-  BarChart,
   PieChart,
   Pie,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 

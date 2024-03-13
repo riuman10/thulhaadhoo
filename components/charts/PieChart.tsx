@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/supabase";
 import React from "react";
 import dynamic from 'next/dynamic';

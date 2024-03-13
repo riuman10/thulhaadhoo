@@ -13,8 +13,6 @@ function BorderCard({
   onClick = () => {},
   classNames = "",
 }: Props) {
-
-
   const partyLookUp: any = {
     jp: `Jumhooree Party`,
     pnf: `People's National Front`,
@@ -32,7 +30,7 @@ function BorderCard({
     thahle: "Thahleem",
     adam: "Adam",
     "-": "Unknown",
-    "undecided": "Undecided",
+    undecided: "Undecided",
   };
 
   const partyColor: any = {
@@ -52,7 +50,7 @@ function BorderCard({
     thahle: "#E7E5E4",
     adam: "#E7E5E4",
     "-": "#E7E5E4",
-    "undecided": "#E7E5E4",
+    undecided: "#E7E5E4",
   };
 
   return (

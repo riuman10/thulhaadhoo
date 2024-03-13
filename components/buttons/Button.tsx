@@ -45,7 +45,9 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const borderTheme: any = {
-    default: `border ${disabled ? "border-zinc-500" : "border-zinc-900 hover:border-zinc-800"}`,
+    default: `border ${
+      disabled ? "border-zinc-500" : "border-zinc-900 hover:border-zinc-800"
+    }`,
     delete: `border ${disabled ? "b-100" : " border-red-600"}`,
     ghost: `border ${disabled ? "b-100" : " border-gray-300"}`,
   };

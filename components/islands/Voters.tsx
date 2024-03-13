@@ -15,9 +15,6 @@ type Props = {
 
 function Voters({
   item = false,
-  confirm = false,
-  setConfirm = () => {},
-  onSuccess = () => {},
 }: Props) {
   const [voters, setVoters] = useState<any>(false);
   const [selectedVoter, setSelectedVoter] = useState<any>(false);
