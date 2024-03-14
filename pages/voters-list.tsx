@@ -17,11 +17,23 @@ const PAGE_SIZE = 25;
 
 type Props = {};
 
+let searchTypes = [
+  {
+    id : "full_name",
+    name : "Name"
+  },
+  {
+    id : "house_name",
+    name : "House"
+  }
+]
+
 function VotersList({}: Props) {
   // const { supabase } = useSupabase();
   const [loading, setLoading] = useState<boolean>(false);
   const [voters, setVoters] = useState<any>([]);
   const [search, setSearch] = useState<string>("");
+  const [searchBy, setSearchBy] = useState<any>(searchTypes[0].id);
   const [open, setOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<any>(false);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -57,7 +69,7 @@ function VotersList({}: Props) {
     const { data } = await supabase
       .from("thulhaadhoo_foshi")
       .select("*")
-      .textSearch("house_name", value)
+      .textSearch(searchBy.id === "house_name" ? "house_name" : `full_name`, value)
       .eq("island", island);
     setVoters(data);
     setLoading(false);
@@ -87,6 +99,8 @@ function VotersList({}: Props) {
     getUserIsland();
   }, []);
 
+  console.log(searchBy)
+
   return (
     <div>
       <Header title="Voters list" />
@@ -100,8 +114,27 @@ function VotersList({}: Props) {
             />
           </div>
           <div className="flex gap-3 items-center mb-8">
+            <div className="flex flex-row gap-2">
+            {searchTypes &&
+              searchTypes.map((item, index) => (
+                <>
+                  <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSearchBy(item)}>
+                    <input
+                      id="red-radio"
+                      type="radio"
+                      value={searchBy}
+                      checked={item.id === searchBy.id}
+                      className="w-4 h-4 text-yellow-600 bg-gray-100 border-gray-300 focus:ring-yellow-500 dark:focus:yellow-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                      {item.name}
+                    </label>
+                  </div>
+                </>
+              ))}
+              </div>
             <Input
-              placeholder="Search..."
+              placeholder={searchBy.id === "house_name" ? "Search by house..." : "Search by name..."}
               value={search}
               width="md:w-[350px] w-[250px]"
               onChange={(value) => {
