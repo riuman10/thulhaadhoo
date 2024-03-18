@@ -25,7 +25,7 @@ export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
     default: [],
   };
   return (
-    <div className="w-full h-screen flex flex-col justify-between bg-white">
+    <div className="w-full h-screen flex flex-col justify-between bg-white border-r border-gray-50">
       <div className="flex flex-col gap-2 mt-6 overflow-y-scroll">
         {lookup[user.role] &&
           lookup[user.role].map((item: any) => (

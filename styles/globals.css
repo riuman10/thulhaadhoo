@@ -25,10 +25,9 @@ p {
   font-family: "Haluvidhaa";
 }
 
-body {
-  /* background: #141414 */
+/* body {
   background: #FBFBFB;
-}
+} */
 
 @layer utilities {
   .text-balance {

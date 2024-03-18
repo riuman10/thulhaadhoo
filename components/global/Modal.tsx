@@ -121,7 +121,7 @@ const Modal: React.FC<ModalProps> = ({
                     </div>
                     <button
                       type="button"
-                      className="rounded-md transition-all duration-75 ease-out hover:bg-gray-150"
+                      className="rounded-md transition-all duration-75 ease-out hover:bg-gray-150 focus:outline-none"
                       onClick={() => {
                         onClose();
                       }}

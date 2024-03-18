@@ -38,7 +38,7 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
           {virtualItems.map((virtualItem, index) => {
             const listItem = data[index];
             return (
-              <tr key={virtualItem.index} onClick={() => onRowClick(listItem)}>
+              <tr key={virtualItem.index} onClick={() => onRowClick(listItem)} className="hover:bg-gray-100 transition-all duration-300 ease-out">
                 {tableFields &&
                   tableFields.map((header: any, index: number) => (
                     <motion.td

@@ -56,7 +56,7 @@ const Radio: React.FC<RadioProps> = ({
             value={item}
             className={({active, checked}) =>
               ` ${active ? "bg-50" : ""}
-                ${selected?.id == item.id ? "bg-white ring-2 ring-yellow-400 border-transparent" : "bg-gray-50 b-100"}
+                ${selected?.id == item.id ? "bg-white ring-2 ring-blue-400 border-transparent" : "bg-gray-50 b-100"}
                 flex cursor-pointer p-4  focus:outline-none m-1 border border-gray-100 rounded-lg
               `
             }
@@ -64,10 +64,6 @@ const Radio: React.FC<RadioProps> = ({
             {({active, checked}) => (
               <>
                 <div className="flex w-full flex-col">
-                  {/* <Icon
-                    name={`input/${item.icon ? item.icon : "PkgType"}`}
-                    stroke={selected?.id == item.id ? "#fcfcfc" : iconTheme[theme]}
-                  /> */}
                   <div className="flex items-center mt-2">
                     <div className="text-sm">
                       <RadioGroup.Label
