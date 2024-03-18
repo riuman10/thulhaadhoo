@@ -74,56 +74,54 @@ const Modal: React.FC<ModalProps> = ({
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 overflow-hidden font-inter z-30"
+        className="font-inter fixed inset-0 z-[100] overflow-hidden"
         onClose={() => handleToggle()}
       >
         <div className="absolute inset-0 overflow-hidden">
           <Transition.Child
             as={Fragment}
-            enter="ease-in-out duration-500"
+            enter="ease-out duration-500"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in-out duration-500"
+            leave="ease-out duration-500"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="absolute inset-0 bg-black dark:bg-opacity-70 bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="bg-black absolute inset-0 bg-opacity-75 transition-opacity dark:bg-opacity-70" />
           </Transition.Child>
-          <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+          <div className="fixed inset-y-0 right-0 top-0 flex max-w-full">
             <Transition.Child
               as={Fragment}
-              enter="transform transition ease-in-out duration-500 sm:duration-700"
+              enter="transition-all duration-700 ease-in-out sm:duration-700"
               enterFrom="translate-x-full"
               enterTo="translate-x-0"
-              leave="transform transition ease-in-out duration-500 sm:duration-700"
+              leave="transition-all duration-500 ease-in-out sm:duration-700"
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <div
-                className={`w-screen transition-all duration-1000 delay-200 ${size}`}
-              >
+              <div className={`p-2 w-screen ${size}`}>
                 <div
                   className={`${
-                    !showButton ? "h-full" : "h-[calc(100%-70px)]"
-                  }  flex flex-col bg-white shadow-xl overflow-y-scroll scrollBarHide pb-[100px]`}
+                    !showButton ? "h-full" : "h-[calc(100%-12px)]"
+                  } flex flex-col rounded-2xl bg-white pb-10`}
                 >
                   <div
-                    className={`flex justify-between py-6 pl-8 pr-5 border-b border-gray-300 bg-white  items-center sticky top-0 bg-25 z-30 ${
+                    className={`bg-25 border-150 sticky top-0 z-30 flex items-center justify-between rounded-t-2xl  border-b bg-white p-4 ${
                       showBorder ? "" : ""
                     }`}
                   >
                     <div className="flex flex-col bg-white">
                       {title ? (
-                        <p className="text-xl font-medium text-900">
+                        <p className="text-gray-900 text-lg font-medium">
                           {" "}
                           {title}{" "}
                         </p>
                       ) : null}
-                      {sub ? <p className="text-sm text-700"> {sub} </p> : null}
+                      {sub ? <p className="text-700 text-sm"> {sub} </p> : null}
                     </div>
                     <button
                       type="button"
-                      className="focus:outline-none "
+                      className="rounded-md transition-all duration-75 ease-out hover:bg-gray-150"
                       onClick={() => {
                         onClose();
                       }}
@@ -131,13 +129,13 @@ const Modal: React.FC<ModalProps> = ({
                       <Close />
                     </button>
                   </div>
-                  <div className="py-8 px-6">
+                  <div className="prettifyScroll h-full overflow-y-scroll">
                     {cloneElement(children, { ...props })}
                   </div>
                 </div>
                 {showButton ? (
                   <div
-                    className={`fixed w-screen ${size} py-4 px-8 gap-4 border-t border-gray-300 bg-white bg-25 z-30 bottom-0 flex justify-between items-center`}
+                    className={`sticky bottom-0 flex w-full justify-between ${size} border-150 bottom-3 flex justify-end gap-4 rounded-b-2xl border-t bg-white px-6 py-[20px]`}
                   >
                     <Button
                       name="Cancel"

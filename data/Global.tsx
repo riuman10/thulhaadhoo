@@ -1,6 +1,6 @@
 import PartyPill from "@/components/global/PartyPill";
 import Tick from "@/components/icons/Tick";
-import { Home, Vote, Users , X} from "lucide-react";
+import { Home, Vote, Users , Landmark} from "lucide-react";
 
 const TableFields = [
   { name: "ID", id: "nid" },
@@ -38,6 +38,63 @@ const TableFields = [
       return <p className="w-[70px] truncate">{item.remarks}</p>;
     },
   },
+];
+
+const D2DTableFields = [
+  { name: "ID", id: "nid" },
+  {
+    name: "Agent",
+    id: "agent",
+    render: (item: any) => {
+      return <p className="capitalize">{item.agent}</p>;
+    },
+  },
+  { name: "Name", id: "full_name" },
+  { name: "Island", id: "island" },
+  { name: "House Name", id: "house_name" },
+  { name: "Mobile", id: "mobile_number" },
+  {
+    name: "Party",
+    id: "party",
+    render: (item: any) => {
+      return <PartyPill party={item.party} />;
+    },
+  },
+  { name: "Registered Box", id: "registered_box" },
+  { name: "Voting for D2D", id: "voting_for_d2d" },
+  {
+    name: "Contacted",
+    id: "approached",
+    render: (item: any) => {
+      return item.approached ? <Tick /> : <Tick background="#FEE6E8" stroke="#F2454D" />;
+    },
+  },
+  {
+    name: "Remarks",
+    id: "remarks",
+    render: (item: any) => {
+      return <p className="w-[70px] truncate">{item.remarks}</p>;
+    },
+  },
+];
+
+const AllIslandsFields = [
+  { name: "Island", id: "island" },
+  {
+    name: "Shafeeg",
+    id: "shafeeg",
+  },
+  { name: "Hannan", id: "hannan" },
+  { name: "Kadde", id: "kadde" },
+  { name: "Shareef", id: "shareef" },
+  {
+    name: "Afrah",
+    id: "afrah",
+  },
+  { name: "Thahle", id: "thahle" },
+  { name: "Adam", id: "adam" },
+  { name: "Undecided", id: "undecided" },
+
 ];
 
 const yesNo = [
@@ -239,6 +296,12 @@ const adminNavigationLinks = [
     icon: <Vote stroke="#71717A" />,
   },
   {
+    id: "islands",
+    name: "Islands",
+    link: "/islands",
+    icon: <Landmark stroke="#71717A" />,
+  },
+  {
     id: "users",
     name: "Users",
     link: "/users",
@@ -261,6 +324,17 @@ const agentNavigationLinks = [
   },
 ];
 
+const searchByArr = [
+  {
+    id : "house",
+    name : "House"
+  },
+  {
+    id : "name",
+    name : "Name"
+  }
+]
+
 export {
   TableFields,
   Party,
@@ -272,4 +346,7 @@ export {
   colorLookup,
   Agents,
   roles,
+  searchByArr,
+  D2DTableFields,
+  AllIslandsFields
 };

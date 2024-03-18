@@ -6,6 +6,7 @@ type Props = {
   width?: string;
   placeholder: string;
   value: string;
+  containerClassNames?: string;
   onChange: (item: any) => any;
 };
 
@@ -15,10 +16,11 @@ function Input({
   width = "",
   placeholder = "placeholder",
   value = "",
+  containerClassNames = "",
   onChange,
 }: Props) {
   return (
-    <div className={`relative w-full bg-white rounded-lg`}>
+    <div className={`relative w-full bg-white rounded-lg ${containerClassNames}`}>
       <div className={`relative ${title && "h-[64px]"}`}>
         <div className="flex">
           {title ? (
