@@ -70,10 +70,10 @@ const D2DTableFields = [
     },
   },
   {
-    name: "Remarks",
+    name: "Remarks D2D",
     id: "remarks",
     render: (item: any) => {
-      return <p className="w-[70px] truncate">{item.remarks}</p>;
+      return <p className="w-[70px] truncate">{item.remarks_d2d}</p>;
     },
   },
 ];

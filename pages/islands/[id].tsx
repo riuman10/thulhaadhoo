@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { TableFields, searchByArr, D2DTableFields } from "@/data/Global";
 import { supabase } from "@/supabase";
 import VirtualTable from "@/components/tables/VirtualTable";

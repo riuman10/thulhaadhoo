@@ -39,7 +39,7 @@ function D2D({
         voting_for_d2d: votingFor ? votingFor.id : "-",
         party: party ? party.id : "unknown",
         agent: agent ? agent.id : "-",
-        remarks: remarks,
+        remarks_d2d: remarks,
       })
       .eq("id", item.id)
       .select();
@@ -55,7 +55,7 @@ function D2D({
 
   useEffect(() => {
     if (!item) return;
-    setRemarks(item.remarks);
+    setRemarks(item.remarks_d2d);
     setVotingFor(
       item.voting_for_d2d !== "-"
         ? Candidates.find((x) => x.id === item.voting_for)
