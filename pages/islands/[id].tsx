@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { TableFields, searchByArr, D2DTableFields, Party , Agents} from "@/data/Global";
+import { TableFields, searchByArr, D2DTableFields, Party, Agents, Candidates} from "@/data/Global";
 import { supabase } from "@/supabase";
 import VirtualTable from "@/components/tables/VirtualTable";
 import { useParams } from "next/navigation";
@@ -14,7 +14,7 @@ import CallCenter from "@/components/forms/CallCenter";
 import D2D from "@/components/forms/D2D";
 import Filter from "@/components/filter/Filter";
 import FilterTab from "@/components/filter/FilterTab";
-import { Scale , User , Trash2} from 'lucide-react';
+import { Scale , User , Trash2, FileCheck} from 'lucide-react';
 
 type Props = {
   params: { slug: string };
@@ -39,6 +39,7 @@ function IslandDetaila({}: Props) {
   // Filters
   const [selectedParty, setSelectedParty] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(false);
 
   const fetchData = async () => {
     let query = supabase
@@ -54,6 +55,9 @@ function IslandDetaila({}: Props) {
     }
     if (selectedAgent !== false) {
       query = query.eq("agent", selectedAgent);
+    }
+    if (selectedCandidate !== false) {
+      query = query.eq("voting_for", selectedCandidate);
     }
 
     const { data } = await query.range(
@@ -93,7 +97,7 @@ function IslandDetaila({}: Props) {
   useEffect(() => {
       setPageNumber(1);
       fetchData();
-  }, [selectedParty, selectedAgent]);
+  }, [selectedParty, selectedAgent , selectedCandidate]);
 
   useEffect(() => {
     fetchData();
@@ -130,6 +134,17 @@ function IslandDetaila({}: Props) {
             defaultValue={selectedAgent}
             onSelect={(x) => {
               setSelectedAgent(x.id);
+            }}
+          />
+           <FilterTab
+            icon = {<FileCheck stroke = "#737373" size = {14} />}
+            value="Voting"
+            triggerId="#voting_for_trigger"
+            condition="for"
+            filterItems={Candidates}
+            defaultValue={selectedCandidate}
+            onSelect={(x) => {
+              setSelectedCandidate(x.id);
             }}
           />
 
