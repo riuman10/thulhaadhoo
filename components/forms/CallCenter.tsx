@@ -27,7 +27,13 @@ function CallCenter({
   const [party, setParty] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
   const { user } = useUserStore();
+  const [agents, setAgents] = useState<any>([]);
   const [hasAccess, setHasAccess] = useState<boolean>(false);
+
+  const fetchAgents = async () => {
+    const { data } = await supabase.from("agents").select("*");
+    setAgents(data);
+  };
 
   const updateItem = async () => {
     const { data } = await supabase
@@ -36,7 +42,7 @@ function CallCenter({
         approached: contacted.id === "true" ? true : false,
         voting_for: votingFor ? votingFor.id : "-",
         party: party ? party.id : "unknown",
-        agent: agent ? agent.id : "-",
+        agent: agent ? agent.agent_name : "-",
         remarks: remarks,
       })
       .eq("id", item.id)
@@ -59,7 +65,6 @@ function CallCenter({
         : false
     );
     setContacted(item.approached);
-    console.log(item);
   }, [item]);
 
   useEffect(() => {
@@ -68,7 +73,9 @@ function CallCenter({
     );
   }, [user]);
 
-  console.log(item);
+  useEffect(() => {
+    fetchAgents();
+  },[]);
 
   return (
     <div className="p-6 pb-[130px]">
@@ -126,8 +133,8 @@ function CallCenter({
         <div className="space-y-1.5">
           <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
           <DropDown
-            items={Agents}
-            defaultSelected={Agents.find((x) => x.id === item.agent)}
+            items={agents}
+            defaultSelected={agents.find((x : any) => x.id === item.agent)}
             onSelect={(obj) => {
               setAgent(obj);
             }}

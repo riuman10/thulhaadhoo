@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "../buttons/Button";
 import { AnimatePresence, motion } from "framer-motion";
 import { MoveDiagonal } from 'lucide-react';
 
@@ -17,15 +16,15 @@ const Filter = ({ children = <></> }: any) => {
           <motion.div
             initial={{
               opacity: 0,
-              height: 0,
+              // height: 0,
             }}
             animate={{
               opacity: 1,
-              height: "auto",
+              // height: "auto",
             }}
             exit={{
               opacity: 0,
-              height: "0px",
+              // height: "0px",
             }}
             className="flex flex-wrap items-center gap-2"
           >

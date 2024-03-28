@@ -152,6 +152,7 @@ function IslandDetaila({}: Props) {
       onClick={() => {
         setSelectedAgent(false);
         setSelectedParty(false);
+        setSelectedCandidate(false);
       }}
       >
         <Trash2 stroke = "#737373" size = {14} />

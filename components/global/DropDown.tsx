@@ -59,7 +59,7 @@ function DropDown({
                     selectedItem ? "text-zinc-900 font-medium capitalize" : ""
                   }`}
                 >
-                  {selectedItem ? selectedItem.name : placeholder}
+                  {selectedItem ? selectedItem.name || selectedItem.full_name : placeholder}
                 </p>
               </div>
               <ChevronDown color="black" size={15} />
@@ -98,7 +98,7 @@ function DropDown({
                     ) : (
                       <></>
                     )}
-                    <p className="text-sm text-zinc-900">{item.name}</p>
+                    <p className="text-sm text-zinc-900">{item.name || item.full_name}</p>
                   </Combobox.Option>
                 ))}
             </Combobox.Options>

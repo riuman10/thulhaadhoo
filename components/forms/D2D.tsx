@@ -28,7 +28,13 @@ function D2D({
   const [party, setParty] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
   const { user } = useUserStore();
+  const [agents, setAgents] = useState<any>([]);
   const [hasAccess, setHasAccess] = useState<boolean>(false);
+
+  const fetchAgents = async () => {
+    const { data } = await supabase.from("agents").select("*");
+    setAgents(data);
+  };
 
   const updateItem = async () => {
     setLoading(true);
@@ -38,7 +44,7 @@ function D2D({
         approached: contacted.id === "true" ? true : false,
         voting_for_d2d: votingFor ? votingFor.id : "-",
         party: party ? party.id : "unknown",
-        agent: agent ? agent.id : "-",
+        agent: agent ? agent.agent_name : "-",
         remarks_d2d: remarks,
       })
       .eq("id", item.id)
@@ -70,6 +76,10 @@ function D2D({
       user && (user.role === "admin" || user.role === "super_admin")
     );
   }, [user]);
+
+  useEffect(() => {
+    fetchAgents();
+  },[])
 
   return (
     <div className="p-6 pb-[130px]">
@@ -127,8 +137,8 @@ function D2D({
         <div className="space-y-1.5">
           <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
           <DropDown
-            items={Agents}
-            defaultSelected={Agents.find((x) => x.id === item.agent)}
+            items={agents}
+            defaultSelected={agents.find((x : any) => x.id === item.agent)}
             onSelect={(obj) => {
               setAgent(obj);
             }}

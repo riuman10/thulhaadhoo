@@ -1,6 +1,6 @@
 import PartyPill from "@/components/global/PartyPill";
 import Tick from "@/components/icons/Tick";
-import { Home, Vote, Users , Landmark} from "lucide-react";
+import { Home, Vote, Users, Landmark, UserRoundSearch } from "lucide-react";
 
 const TableFields = [
   { name: "ID", id: "nid" },
@@ -8,7 +8,11 @@ const TableFields = [
     name: "Agent",
     id: "agent",
     render: (item: any) => {
-      return <p className="capitalize">{item.agent}</p>;
+      let words = item.agent.split("_");
+      let originalString = words
+        .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      return <p className="capitalize">{originalString}</p>;
     },
   },
   { name: "Name", id: "full_name" },
@@ -28,7 +32,11 @@ const TableFields = [
     name: "Contacted",
     id: "approached",
     render: (item: any) => {
-      return item.approached ? <Tick /> : <Tick background="#FEE6E8" stroke="#F2454D" />;
+      return item.approached ? (
+        <Tick />
+      ) : (
+        <Tick background="#FEE6E8" stroke="#F2454D" />
+      );
     },
   },
   {
@@ -40,13 +48,28 @@ const TableFields = [
   },
 ];
 
+const AgentsTableFields = [
+  {
+    name: "Agent",
+    id: "full_name",
+    render: (item: any) => {
+      return <p className="capitalize">{item.full_name}</p>;
+    },
+  },
+  { name: "Mobile Number", id: "mobile_number" },
+];
+
 const D2DTableFields = [
   { name: "ID", id: "nid" },
   {
     name: "Agent",
     id: "agent",
     render: (item: any) => {
-      return <p className="capitalize">{item.agent}</p>;
+      let words = item.agent.split("_");
+      let originalString = words
+        .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      return <p className="capitalize">{originalString}</p>;
     },
   },
   { name: "Name", id: "full_name" },
@@ -66,7 +89,11 @@ const D2DTableFields = [
     name: "Contacted",
     id: "approached",
     render: (item: any) => {
-      return item.approached ? <Tick /> : <Tick background="#FEE6E8" stroke="#F2454D" />;
+      return item.approached ? (
+        <Tick />
+      ) : (
+        <Tick background="#FEE6E8" stroke="#F2454D" />
+      );
     },
   },
   {
@@ -94,7 +121,6 @@ const AllIslandsFields = [
   { name: "Thahle", id: "thahle" },
   { name: "Adam", id: "adam" },
   { name: "Undecided", id: "undecided" },
-
 ];
 
 const yesNo = [
@@ -302,6 +328,12 @@ const adminNavigationLinks = [
     icon: <Landmark stroke="#71717A" />,
   },
   {
+    id: "agents",
+    name: "Agents",
+    link: "/agents",
+    icon: <UserRoundSearch stroke="#71717A" />,
+  },
+  {
     id: "users",
     name: "Users",
     link: "/users",
@@ -326,14 +358,14 @@ const agentNavigationLinks = [
 
 const searchByArr = [
   {
-    id : "house",
-    name : "House"
+    id: "house",
+    name: "House",
   },
   {
-    id : "name",
-    name : "Name"
-  }
-]
+    id: "name",
+    name: "Name",
+  },
+];
 
 export {
   TableFields,
@@ -348,5 +380,6 @@ export {
   roles,
   searchByArr,
   D2DTableFields,
-  AllIslandsFields
+  AllIslandsFields,
+  AgentsTableFields,
 };
