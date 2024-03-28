@@ -35,31 +35,45 @@ const VirtualTable = ({ data, tableFields, onRowClick = () => {} }: any) => {
           </tr>
         </thead>
         <tbody className={`bg-white relative divide-y divide-gray-200`}>
-          {virtualItems.map((virtualItem, index) => {
-            const listItem = data[index];
-            return (
-              <tr key={virtualItem.index} onClick={() => onRowClick(listItem)} className="hover:bg-gray-100 transition-all duration-300 ease-out">
-                {tableFields &&
-                  tableFields.map((header: any, index: number) => (
-                    <motion.td
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      key={index}
-                      className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer capitalize ${
-                        index === 0
-                          ? "w-[50px] text-gray-900"
-                          : "text-gray-800 font-medium"
-                      }`}
-                    >
-                      {header.render
-                        ? header.render(listItem)
-                        : listItem[header.id]}
-                    </motion.td>
-                  ))}
-              </tr>
-            );
-          })}
+          {virtualItems && virtualItems.length > 0 ? (
+            virtualItems.map((virtualItem, index) => {
+              const listItem = data[index];
+              return (
+                <tr
+                  key={virtualItem.index}
+                  onClick={() => onRowClick(listItem)}
+                  className="hover:bg-gray-100 transition-all duration-300 ease-out"
+                >
+                  {tableFields &&
+                    tableFields.map((header: any, index: number) => (
+                      <motion.td
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        key={index}
+                        className={`px-6 py-4 whitespace-nowrap text-sm max-w-[200px] truncate cursor-pointer capitalize ${
+                          index === 0
+                            ? "w-[50px] text-gray-900"
+                            : "text-gray-800 font-medium"
+                        }`}
+                      >
+                        {header.render
+                          ? header.render(listItem)
+                          : listItem[header.id]}
+                      </motion.td>
+                    ))}
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan={tableFields.length}>
+                <p className="text-gray-500 text-left px-4 text-sm py-3">
+                  No data to show
+                </p>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

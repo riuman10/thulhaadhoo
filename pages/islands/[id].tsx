@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { TableFields, searchByArr, D2DTableFields } from "@/data/Global";
+import { TableFields, searchByArr, D2DTableFields, Party , Agents} from "@/data/Global";
 import { supabase } from "@/supabase";
 import VirtualTable from "@/components/tables/VirtualTable";
 import { useParams } from "next/navigation";
@@ -12,6 +12,10 @@ import SolidTabs from "@/components/global/SolidTabs";
 import Modal from "@/components/global/Modal";
 import CallCenter from "@/components/forms/CallCenter";
 import D2D from "@/components/forms/D2D";
+import Filter from "@/components/filter/Filter";
+import FilterTab from "@/components/filter/FilterTab";
+import { Scale , User , Trash2} from 'lucide-react';
+
 type Props = {
   params: { slug: string };
 };
@@ -32,16 +36,24 @@ function IslandDetaila({}: Props) {
   const [searchBy, setSearchBy] = useState<string>("house");
   const [selectedItem, setSelectedItem] = useState<any>(false);
 
+  // Filters
+  const [selectedParty, setSelectedParty] = useState(false);
+  const [selectedAgent, setSelectedAgent] = useState(false);
+
   const fetchData = async () => {
     let query = supabase
       .from("thulhaadhoo_foshi")
       .select("*")
       .order("house_name", {
         ascending: true,
-      });
+      })
+      .eq("island", decodedString);
 
-    if (decodedString !== "") {
-      query = query.eq("island", decodedString);
+    if (selectedParty !== false) {
+      query = query.eq("party", selectedParty);
+    }
+    if (selectedAgent !== false) {
+      query = query.eq("agent", selectedAgent);
     }
 
     const { data } = await query.range(
@@ -79,6 +91,11 @@ function IslandDetaila({}: Props) {
   }, [searchBy]);
 
   useEffect(() => {
+      setPageNumber(1);
+      fetchData();
+  }, [selectedParty, selectedAgent]);
+
+  useEffect(() => {
     fetchData();
   }, [pageNumber]);
 
@@ -92,7 +109,39 @@ function IslandDetaila({}: Props) {
         layoutId="island_tab"
       />
       <div className="w-full flex items-center justify-between">
-        <p></p>
+        <Filter>
+          <FilterTab
+            icon = {<Scale stroke = "#737373" size = {14} />}
+            value="Party"
+            triggerId="#party_trigger"
+            condition="is"
+            filterItems={Party}
+            defaultValue={selectedParty}
+            onSelect={(x) => {
+              setSelectedParty(x.id);
+            }}
+          />
+           <FilterTab
+            icon = {<User stroke = "#737373" size = {14} />}
+            value="Agent"
+            triggerId="#agent_trigger"
+            condition="is"
+            filterItems={Agents}
+            defaultValue={selectedAgent}
+            onSelect={(x) => {
+              setSelectedAgent(x.id);
+            }}
+          />
+
+      <div className="border px-2 py-[5px] rounded-lg hover:bg-gray-100 cursor-pointer"
+      onClick={() => {
+        setSelectedAgent(false);
+        setSelectedParty(false);
+      }}
+      >
+        <Trash2 stroke = "#737373" size = {14} />
+      </div>
+        </Filter>
         <div className="flex items-center gap-2">
           <SolidTabs
             tabs={searchByArr}
@@ -128,7 +177,7 @@ function IslandDetaila({}: Props) {
       ) : (
         <div className="w-full flex items-center justify-center">
           <div
-            className=" bg-white px-4 text-center mt-10 rounded-xl cursor-pointer py-2"
+            className=" bg-gray-50 px-2 text-center mt-10 rounded-xl cursor-pointer py-1"
             onClick={() => setPageNumber(pageNumber + 1)}
           >
             <ChevronDown />
