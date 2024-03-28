@@ -35,11 +35,22 @@ function IslandDetaila({}: Props) {
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [searchBy, setSearchBy] = useState<string>("house");
   const [selectedItem, setSelectedItem] = useState<any>(false);
+  const [agents, setAgents] = useState<any>([]);
+
 
   // Filters
   const [selectedParty, setSelectedParty] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(false);
+
+  const fetchAgents = async () => {
+    const { data } = await supabase.from("agents").select("*");
+    let temp = data && data.forEach((obj : any) => {
+      obj["name"] = obj.full_name;
+  });
+  console.log(data , "mmmm")
+    data ? setAgents(data) : setAgents([]);
+  };
 
   const fetchData = async () => {
     let query = supabase
@@ -103,6 +114,10 @@ function IslandDetaila({}: Props) {
     fetchData();
   }, [pageNumber]);
 
+  useEffect(() => {
+    fetchAgents();
+  },[]);
+
   return (
     <div className="space-y-8">
       <p className="text-2xl font-medium text-gray-900">{decodedString}</p>
@@ -130,10 +145,10 @@ function IslandDetaila({}: Props) {
             value="Agent"
             triggerId="#agent_trigger"
             condition="is"
-            filterItems={Agents}
+            filterItems={agents}
             defaultValue={selectedAgent}
             onSelect={(x) => {
-              setSelectedAgent(x.id);
+              setSelectedAgent(x.agent_name);
             }}
           />
            <FilterTab
