@@ -5,7 +5,7 @@ import { MoveDiagonal } from 'lucide-react';
 const Filter = ({ children = <></> }: any) => {
   const [open, setOpen] = useState<boolean>(true);
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex md:items-center items-start gap-2">
       <div className="flex items-center gap-2 border px-2 py-[3px] rounded-lg">
         <MoveDiagonal size={15} stroke="#424242" />
         <p className="text-gray-700 text-sm leading-5 font-medium">Filters</p>

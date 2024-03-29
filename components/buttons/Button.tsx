@@ -66,7 +66,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`group flex relative items-center rounded-xl ${extraClasses} ${themes[theme]} ${borderTheme[theme]} duration-300 ease-in-out transition-all`}
     >
       <p
-        className={`font-medium text-sm ${textClasses} ${textTheme[theme]} ${
+        className={`font-medium md:text-sm text-xs ${textClasses} ${textTheme[theme]} ${
           loading ? "opacity-0" : ""
         }`}
       >

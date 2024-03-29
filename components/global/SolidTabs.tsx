@@ -7,8 +7,6 @@ type Props = {
   activeTab: any;
 };
 
-// bg-[#212121]
-
 function SolidTabs({
   tabs,
   extraClasses = "",
@@ -25,11 +23,11 @@ function SolidTabs({
           <button
             key={tab.id}
             onClick={() => onClick(tab)}
-            className="relative whitespace-nowrap rounded-full p-2 px-3 py-1.5 capitalize"
+            className="relative whitespace-nowrap rounded-full p-2 md:px-3 px-2 py-1.5 capitalize"
           >
             <span className="relative z-10 flex items-center font-medium">
               <span
-                className={`text-sm ${
+                className={`text-xs md:text-sm ${
                   activeTab === tab.id ? "text-gray-900" : " text-gray-500"
                 }`}
               >

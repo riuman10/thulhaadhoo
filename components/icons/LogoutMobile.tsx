@@ -1,12 +1,13 @@
 import * as React from "react"
 import { SVGProps } from "react"
 const LogoutMobile = ({
-  stroke = "white"
+  stroke = "white",
+  size = 22
 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={22}
-    height={22}
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
   >
     <g fill="none">

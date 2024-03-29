@@ -313,31 +313,31 @@ const adminNavigationLinks = [
     id: "home",
     name: "Dashboard",
     link: "/dashboard",
-    icon: <Home stroke="#71717A" />,
+    icon: <Home stroke="#71717A" size = {17} />,
   },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: <Vote stroke="#71717A" />,
+    icon: <Vote stroke="#71717A" size = {17} />,
   },
   {
     id: "islands",
     name: "Islands",
     link: "/islands",
-    icon: <Landmark stroke="#71717A" />,
+    icon: <Landmark stroke="#71717A" size = {17} />,
   },
   {
     id: "agents",
     name: "Agents",
     link: "/agents",
-    icon: <UserRoundSearch stroke="#71717A" />,
+    icon: <UserRoundSearch stroke="#71717A" size = {17} />,
   },
   {
     id: "users",
     name: "Users",
     link: "/users",
-    icon: <Users stroke="#71717A" />,
+    icon: <Users stroke="#71717A" size = {17} />,
   },
 ];
 
@@ -346,13 +346,13 @@ const agentNavigationLinks = [
     id: "home",
     name: "Dashboard",
     link: "/dashboard",
-    icon: <Home stroke="#71717A" />,
+    icon: <Home stroke="#71717A" size = {17} />,
   },
   {
     id: "voters_list",
     name: "Voters List",
     link: "/voters-list",
-    icon: <Vote stroke="#71717A" />,
+    icon: <Vote stroke="#71717A" size = {17} />,
   },
 ];
 

@@ -145,7 +145,7 @@ function CallCenter({
           onChange={(value) => setMobile(value)}
         />
         <div className="space-y-1.5">
-          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>Party</p>
+          <p className={`text-gray-700 md:text-sm text-xs pb-1.5 font-medium`}>Party</p>
           <DropDown
             items={Party}
             defaultSelected={Party.find((x) => x.id === item.party)}
@@ -155,7 +155,7 @@ function CallCenter({
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>Agent</p>
+          <p className={`text-gray-700 md:text-sm text-xs pb-1.5 font-medium`}>Agent</p>
           <DropDown
             items={agents}
             defaultSelected={agents.find((x: any) => x.agent_name === item.agent)}
@@ -165,7 +165,7 @@ function CallCenter({
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>
+          <p className={`text-gray-700 md:text-sm text-xs pb-1.5 font-medium`}>
             Contacted
           </p>
           <Radio
@@ -179,7 +179,7 @@ function CallCenter({
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>
+          <p className={`text-gray-700 md:text-sm text-xs pb-1.5 font-medium`}>
             Voting for
           </p>
           <Radio

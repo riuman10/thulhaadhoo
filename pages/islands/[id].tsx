@@ -120,14 +120,14 @@ function IslandDetaila({}: Props) {
 
   return (
     <div className="space-y-8">
-      <p className="text-2xl font-medium text-gray-900">{decodedString}</p>
+      <p className="md:text-2xl text-lg font-medium text-gray-900">{decodedString}</p>
       <Tabs
         tabs={IslandTabs}
         onClick={(x) => setActive(x.id)}
         activeTab={active}
         layoutId="island_tab"
       />
-      <div className="w-full flex items-center justify-between">
+      <div className="w-full flex md:flex-row flex-col gap-4 items-center justify-between">
         <Filter>
           <FilterTab
             icon = {<Scale stroke = "#737373" size = {14} />}
@@ -184,7 +184,7 @@ function IslandDetaila({}: Props) {
               searchBy === "house" ? "Search by house..." : "Search by name..."
             }
             value={search}
-            width="md:w-[350px] w-[250px] max-w-[350px]"
+            width="md:w-[350px] w-[200px] max-w-[220px] md:max-w-[350px]"
             containerClassNames="w-min"
             onChange={(value) => {
               setSearch(value);
@@ -219,7 +219,7 @@ function IslandDetaila({}: Props) {
       <Modal
         drawerOpen={drawer}
         onClose={() => setDrawer(false)}
-        size="max-w-[450px]"
+        size="md:max-w-[450px] max-w-[350px]"
         title={`${selectedItem.full_name} | ${active === "call_center" ? "Call Center" : "D2D"}`}
         btnText="Update"
       >

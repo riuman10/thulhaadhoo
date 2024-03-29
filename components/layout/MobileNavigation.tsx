@@ -14,7 +14,7 @@ interface SidebarProps {
   handleSignOut: () => void;
 }
 
-export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
+export default function MobileNavigation({ handleSignOut }: SidebarProps): JSX.Element {
   const router = useRouter();
   const { user } = useUserStore();
 
@@ -47,9 +47,9 @@ export default function Sidebar({ handleSignOut }: SidebarProps): JSX.Element {
         className=" bg-[#292929] mb-1 flex items-center justify-center py-2 px-1 rounded-md cursor-pointer mx-2"
         onClick={handleSignOut}
       >
-        <LogoutMobile />
+        <LogoutMobile size = {15} />
       </div>
-      <TooltipContent className="bg-zinc-900">
+      <TooltipContent className="bg-zinc-900 z-50">
           <p className="text-sm text-zinc-100 whitespace-nowrap">Sign out</p>
         </TooltipContent>
         </TooltipTrigger>
@@ -80,8 +80,8 @@ const Link = ({ name, onClick, selected, icon = "Home" }: LinkProps) => {
             {icon}
           </div>
         </TooltipTrigger>
-        <TooltipContent className="bg-zinc-900">
-          <p className="text-sm text-zinc-100 whitespace-nowrap">{name}</p>
+        <TooltipContent className="bg-zinc-800 z-[100]">
+          <p className="md:text-sm text-xs text-zinc-100 whitespace-nowrap">{name}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

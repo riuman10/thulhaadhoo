@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useLayoutEffect, useEffect } from "react";
-import Navigation from "./Navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useUserStore } from "@/store";
 import { supabase } from "@/supabase";
+import MobileNavigation from "./MobileNavigation";
 
 type Props = {
   children: any;
@@ -45,17 +45,17 @@ function Layout({ children }: Props) {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
-// bg-[#0F0F0F]
+
   return (
-    <div className="h-full w-full flex justify-between">
+    <div className="h-full w-full flex">
       {router.asPath === "/login" ? (
         <></>
       ) : (
-        <div className="fixed bg-red-800 h-screen w-[60px] z-10">
-          <Navigation 
+        <aside className="sticky h-screen top-0 w-[45px] z-10">
+          <MobileNavigation 
           handleSignOut={logout}
           />
-        </div>
+        </aside>
       )}
       <AnimatePresence mode="wait">
         <motion.div
@@ -83,7 +83,7 @@ function Layout({ children }: Props) {
             className={`${
               router.asPath === "/login"
                 ? ""
-                : "ml-[60px] flex-1 px-6 py-10 overflow-y-scroll"
+                : "flex-1 px-6 py-10 overflow-y-scroll"
             }`}
             style={style}
           >

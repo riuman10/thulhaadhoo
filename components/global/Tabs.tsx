@@ -27,7 +27,7 @@ function Tabs({ extraClasses = "", tabs = [], onClick = () => {}, activeTab , la
             {activeTab === tab.id && (
               <motion.span
                 layoutId={layoutId}
-                className="absolute -bottom-0.5 left-0 right-0 m-auto h-[2px] w-full bg-red-400"
+                className="absolute -bottom-0.5 left-0 right-0 m-auto h-[3px] w-full bg-zinc-900"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
               />
             )}

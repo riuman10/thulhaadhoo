@@ -112,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({
                   >
                     <div className="flex flex-col bg-white">
                       {title ? (
-                        <p className="text-gray-900 text-lg font-medium">
+                        <p className="text-gray-900 md:text-lg text-sm font-medium">
                           {" "}
                           {title}{" "}
                         </p>
