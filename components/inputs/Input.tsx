@@ -24,7 +24,7 @@ function Input({
       <div className={`relative ${title && "h-[64px]"}`}>
         <div className="flex">
           {title ? (
-            <p className={`text-700 text-sm pb-1.5 font-medium`}>{title}</p>
+            <p className={`text-gray-700 text-sm pb-1.5 leading-5 font-medium`}>{title}</p>
           ) : (
             ""
           )}

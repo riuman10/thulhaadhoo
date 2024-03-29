@@ -2,11 +2,13 @@ import React from "react";
 import { supabase } from "@/supabase";
 import { useState, useEffect } from "react";
 import { Candidates, Party, Agents, yesNo } from "@/data/Global";
+import { MessageSquareQuote } from "lucide-react";
 import { useUserStore } from "@/store";
 import TextArea from "../inputs/TextArea";
 import DropDown from "../global/DropDown";
 import PartyPill from "../global/PartyPill";
 import Radio from "../inputs/Radio";
+import Input from "../inputs/Input";
 
 type Props = {
   item: any;
@@ -26,6 +28,7 @@ function CallCenter({
   const [votingFor, setVotingFor] = useState<any>(false);
   const [party, setParty] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
+  const [mobile, setMobile] = useState<string>("");
   const { user } = useUserStore();
   const [agents, setAgents] = useState<any>([]);
   const [hasAccess, setHasAccess] = useState<boolean>(false);
@@ -33,6 +36,7 @@ function CallCenter({
   const fetchAgents = async () => {
     const { data } = await supabase.from("agents").select("*");
     setAgents(data);
+    setAgent(data && data.find((x: any) => x.agent_name === item.agent));
   };
 
   const updateItem = async () => {
@@ -43,6 +47,7 @@ function CallCenter({
         voting_for: votingFor ? votingFor.id : "-",
         party: party ? party.id : "unknown",
         agent: agent ? agent.agent_name : "-",
+        mobile_number: mobile,
         remarks: remarks,
       })
       .eq("id", item.id)
@@ -65,6 +70,7 @@ function CallCenter({
         : false
     );
     setContacted(item.approached);
+    setMobile(item.mobile_number);
   }, [item]);
 
   useEffect(() => {
@@ -75,7 +81,7 @@ function CallCenter({
 
   useEffect(() => {
     fetchAgents();
-  },[]);
+  }, []);
 
   return (
     <div className="p-6 pb-[130px]">
@@ -119,7 +125,25 @@ function CallCenter({
         </StatusContainer>
       </div>
 
+      <div className="bg-[#F7F7F7] mt-4 p-2">
+        <div className="flex items-center gap-2 mb-[6px]">
+          <MessageSquareQuote size={12} stroke="#A3A3A3" />
+          <p className="text-xs leading-4 text-gray-400">
+            Remarks from Door to Door
+          </p>
+        </div>
+        <p className="text-gray-900 text-sm leading-5 font-medium">
+          {item?.remarks_d2d ? item.remarks_d2d : "-"}
+        </p>
+      </div>
+
       <div className="border-t py-4 mt-4 space-y-10">
+        <Input
+          placeholder="Enter contact number"
+          title="Contact Number"
+          value={mobile}
+          onChange={(value) => setMobile(value)}
+        />
         <div className="space-y-1.5">
           <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>Party</p>
           <DropDown
@@ -131,17 +155,19 @@ function CallCenter({
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
+          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>Agent</p>
           <DropDown
             items={agents}
-            defaultSelected={agents.find((x : any) => x.id === item.agent)}
+            defaultSelected={agents.find((x: any) => x.agent_name === item.agent)}
             onSelect={(obj) => {
               setAgent(obj);
             }}
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-700 text-sm pb-1.5 font-medium`}>Contacted</p>
+          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>
+            Contacted
+          </p>
           <Radio
             defaultSelected={
               item.approached !== undefined
@@ -153,7 +179,9 @@ function CallCenter({
           />
         </div>
         <div className="space-y-1.5">
-          <p className={`text-700 text-sm pb-1.5 font-medium`}>Voting for</p>
+          <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>
+            Voting for
+          </p>
           <Radio
             defaultSelected={
               item.voting_for

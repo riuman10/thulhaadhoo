@@ -1,11 +1,13 @@
 import { supabase } from "@/supabase";
 import { useState, useEffect } from "react";
 import { Candidates, Party, Agents, yesNo } from "@/data/Global";
+import { MessageSquareQuote } from 'lucide-react';
 import { useUserStore } from "@/store";
 import TextArea from "../inputs/TextArea";
 import DropDown from "../global/DropDown";
 import PartyPill from "../global/PartyPill";
 import Radio from "../inputs/Radio";
+import Input from "../inputs/Input";
 
 type Props = {
   item: any;
@@ -29,11 +31,13 @@ function D2D({
   const [contacted, setContacted] = useState<any>(false);
   const { user } = useUserStore();
   const [agents, setAgents] = useState<any>([]);
+  const [mobile, setMobile] = useState<string>("");
   const [hasAccess, setHasAccess] = useState<boolean>(false);
 
   const fetchAgents = async () => {
     const { data } = await supabase.from("agents").select("*");
     setAgents(data);
+    setAgent(data && data.find((x: any) => x.agent_name === item.agent));
   };
 
   const updateItem = async () => {
@@ -45,6 +49,7 @@ function D2D({
         voting_for_d2d: votingFor ? votingFor.id : "-",
         party: party ? party.id : "unknown",
         agent: agent ? agent.agent_name : "-",
+        mobile_number: mobile,
         remarks_d2d: remarks,
       })
       .eq("id", item.id)
@@ -68,7 +73,7 @@ function D2D({
         : false
     );
     setContacted(item.approached);
-    console.log(item);
+    setMobile(item.mobile_number);
   }, [item]);
 
   useEffect(() => {
@@ -123,7 +128,21 @@ function D2D({
         </StatusContainer>
       </div>
 
+      <div className="bg-[#F7F7F7] mt-4 p-2">
+        <div className="flex items-center gap-2 mb-[6px]">
+          <MessageSquareQuote size={12} stroke="#A3A3A3" />
+        <p className="text-xs leading-4 text-gray-400">Remarks from Call Center</p>
+        </div>
+        <p className="text-gray-900 text-sm leading-5 font-medium">{item?.remarks ? item.remarks : "-"}</p>
+      </div>
+
       <div className="border-t py-4 mt-4 space-y-10">
+      <Input
+          placeholder="Enter contact number"
+          title="Contact Number"
+          value={mobile}
+          onChange={(value) => setMobile(value)}
+        />
         <div className="space-y-1.5">
           <p className={`text-gray-700 text-sm pb-1.5 font-medium`}>Party</p>
           <DropDown
@@ -138,7 +157,7 @@ function D2D({
           <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
           <DropDown
             items={agents}
-            defaultSelected={agents.find((x : any) => x.id === item.agent)}
+            defaultSelected={agents.find((x : any) => x.agent_name === item.agent)}
             onSelect={(obj) => {
               setAgent(obj);
             }}

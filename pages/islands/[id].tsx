@@ -220,7 +220,7 @@ function IslandDetaila({}: Props) {
         drawerOpen={drawer}
         onClose={() => setDrawer(false)}
         size="max-w-[450px]"
-        title={selectedItem.full_name}
+        title={`${selectedItem.full_name} | ${active === "call_center" ? "Call Center" : "D2D"}`}
         btnText="Update"
       >
         {active === "call_center" ? (
