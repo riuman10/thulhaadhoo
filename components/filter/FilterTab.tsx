@@ -32,7 +32,7 @@ function FilterTab({
 
   useEffect(() => {
     let temp = filterItems.find(
-      (x: any) => x.id === defaultValue || x.agent_name === defaultValue
+      (x: any) => x.id === defaultValue || x.agent_name === defaultValue || x.name === defaultValue
     );
     setSelectedItem(temp);
   }, [defaultValue]);

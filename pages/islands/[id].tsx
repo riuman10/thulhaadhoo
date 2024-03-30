@@ -36,19 +36,34 @@ function IslandDetaila({}: Props) {
   const [searchBy, setSearchBy] = useState<string>("house");
   const [selectedItem, setSelectedItem] = useState<any>(false);
   const [agents, setAgents] = useState<any>([]);
+  const [boxArr, setBoxArr] = useState<any>([])
 
 
   // Filters
   const [selectedParty, setSelectedParty] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(false);
+  const [selectedBox, setSelectedBox] = useState(false);
+
+
+  const fetchBox = async () => {
+    const { data } = await supabase.from(`dhaairaa_box`).select("*");
+    data &&
+      data.forEach((obj: any) => {
+        obj.name = obj.registered_box;
+      });
+    data &&
+      data.sort((a, b) => a.registered_box.localeCompare(b.registered_box));
+    setBoxArr(data);
+  };
+
+  console.log(boxArr)
 
   const fetchAgents = async () => {
     const { data } = await supabase.from("agents").select("*");
     let temp = data && data.forEach((obj : any) => {
       obj["name"] = obj.full_name;
   });
-  console.log(data , "mmmm")
     data ? setAgents(data) : setAgents([]);
   };
 
@@ -69,6 +84,9 @@ function IslandDetaila({}: Props) {
     }
     if (selectedCandidate !== false) {
       query = query.eq("voting_for", selectedCandidate);
+    }
+    if (selectedBox !== false) {
+      query = query.eq("registered_box", selectedBox);
     }
 
     const { data } = await query.range(
@@ -108,7 +126,7 @@ function IslandDetaila({}: Props) {
   useEffect(() => {
       setPageNumber(1);
       fetchData();
-  }, [selectedParty, selectedAgent , selectedCandidate]);
+  }, [selectedParty, selectedAgent , selectedCandidate, selectedBox]);
 
   useEffect(() => {
     fetchData();
@@ -116,6 +134,7 @@ function IslandDetaila({}: Props) {
 
   useEffect(() => {
     fetchAgents();
+    fetchBox();
   },[]);
 
   return (
@@ -160,6 +179,17 @@ function IslandDetaila({}: Props) {
             defaultValue={selectedCandidate}
             onSelect={(x) => {
               setSelectedCandidate(x.id);
+            }}
+          />
+          <FilterTab
+            icon = {<FileCheck stroke = "#737373" size = {14} />}
+            value="Registered Box"
+            triggerId="#box_trigger"
+            condition="is"
+            filterItems={boxArr}
+            defaultValue={selectedBox}
+            onSelect={(x) => {
+              setSelectedBox(x.registered_box);
             }}
           />
 
