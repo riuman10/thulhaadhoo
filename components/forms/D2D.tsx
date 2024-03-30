@@ -32,6 +32,7 @@ function D2D({
   const { user } = useUserStore();
   const [agents, setAgents] = useState<any>([]);
   const [mobile, setMobile] = useState<string>("");
+  const [presentAddress , setPresentAddress] = useState<string>("");
   const [hasAccess, setHasAccess] = useState<boolean>(false);
 
   const fetchAgents = async () => {
@@ -50,6 +51,7 @@ function D2D({
         party: party ? party.id : "unknown",
         agent: agent ? agent.agent_name : "-",
         mobile_number: mobile,
+        present_address : presentAddress,
         remarks_d2d: remarks,
       })
       .eq("id", item.id)
@@ -74,6 +76,7 @@ function D2D({
     );
     setContacted(item.approached);
     setMobile(item.mobile_number);
+    setPresentAddress(item.present_address);
   }, [item]);
 
   useEffect(() => {

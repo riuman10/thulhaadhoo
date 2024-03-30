@@ -29,6 +29,7 @@ function CallCenter({
   const [party, setParty] = useState<any>(false);
   const [contacted, setContacted] = useState<any>(false);
   const [mobile, setMobile] = useState<string>("");
+  const [presentAddress , setPresentAddress] = useState<string>("");
   const { user } = useUserStore();
   const [agents, setAgents] = useState<any>([]);
   const [hasAccess, setHasAccess] = useState<boolean>(false);
@@ -48,6 +49,7 @@ function CallCenter({
         party: party ? party.id : "unknown",
         agent: agent ? agent.agent_name : "-",
         mobile_number: mobile,
+        present_address : presentAddress,
         remarks: remarks,
       })
       .eq("id", item.id)
@@ -71,6 +73,7 @@ function CallCenter({
     );
     setContacted(item.approached);
     setMobile(item.mobile_number);
+    setPresentAddress(item.present_address);
   }, [item]);
 
   useEffect(() => {
@@ -143,6 +146,12 @@ function CallCenter({
           title="Contact Number"
           value={mobile}
           onChange={(value) => setMobile(value)}
+        />
+         <Input
+          placeholder="Enter contact number"
+          title="Present Address"
+          value={presentAddress}
+          onChange={(value) => setPresentAddress(value)}
         />
         <div className="space-y-1.5">
           <p className={`text-gray-700 md:text-sm text-xs pb-1.5 font-medium`}>Party</p>
