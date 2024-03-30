@@ -1,20 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { TableFields, searchByArr, D2DTableFields, Party, Agents, Candidates} from "@/data/Global";
 import { supabase } from "@/supabase";
-import VirtualTable from "@/components/tables/VirtualTable";
 import { useParams } from "next/navigation";
-import Input from "@/components/inputs/Input";
-import ChevronDown from "@/components/icons/ChevronDown";
 import { IslandTabs } from "@/data/TabsData";
-import Tabs from "@/components/global/Tabs";
-import SolidTabs from "@/components/global/SolidTabs";
-import Modal from "@/components/global/Modal";
-import CallCenter from "@/components/forms/CallCenter";
-import D2D from "@/components/forms/D2D";
-import Filter from "@/components/filter/Filter";
-import FilterTab from "@/components/filter/FilterTab";
-import { Scale , User , Trash2, FileCheck} from 'lucide-react';
+import { TableFields, searchByArr, D2DTableFields, Party, Candidates} from "@/data/Global";
+import { Scale , User , Trash2, FileCheck, Box} from 'lucide-react';
+import dynamic from "next/dynamic";
+const VirtualTable = dynamic(() => import("@/components/tables/VirtualTable"));
+const Input = dynamic(() => import("@/components/inputs/Input"));
+const Tabs = dynamic(() => import("@/components/global/Tabs"));
+const SolidTabs = dynamic(() => import("@/components/global/SolidTabs"));
+const Modal = dynamic(() => import("@/components/global/Modal"));
+const CallCenter = dynamic(() => import("@/components/forms/CallCenter"));
+const D2D = dynamic(() => import("@/components/forms/D2D"));
+const Filter = dynamic(() => import("@/components/filter/Filter"));
+const FilterTab = dynamic(() => import("@/components/filter/FilterTab"));
+import ChevronDown from "@/components/icons/ChevronDown";
 
 type Props = {
   params: { slug: string };
@@ -182,7 +183,7 @@ function IslandDetaila({}: Props) {
             }}
           />
           <FilterTab
-            icon = {<FileCheck stroke = "#737373" size = {14} />}
+            icon = {<Box stroke = "#737373" size = {14} />}
             value="Registered Box"
             triggerId="#box_trigger"
             condition="is"
@@ -198,6 +199,7 @@ function IslandDetaila({}: Props) {
         setSelectedAgent(false);
         setSelectedParty(false);
         setSelectedCandidate(false);
+        setSelectedBox(false);
       }}
       >
         <Trash2 stroke = "#737373" size = {14} />
