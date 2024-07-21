@@ -34,7 +34,7 @@ function VoterDetails({
 
   const updateItem = async () => {
     const { data } = await supabase
-      .from("thulhaadhoo_foshi")
+      .from("thulhaadhoo_mdp")
       .update({
         nid: idCard,
         party: party ? party.id : "unknown",
