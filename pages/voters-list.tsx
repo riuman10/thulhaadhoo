@@ -43,7 +43,7 @@ function VotersList({}: Props) {
 
   const fetchVoters = async () => {
     let query = supabase
-      .from("thulhaadhoo_foshi")
+      .from("thulhaadhoo_mdp")
       .select("*")
       .order("house_name", {
         ascending: true,
@@ -67,7 +67,7 @@ function VotersList({}: Props) {
 
   const searchData = async (value: string) => {
     const { data } = await supabase
-      .from("thulhaadhoo_foshi")
+      .from("thulhaadhoo_mdp")
       .select("*")
       .textSearch(searchBy.id === "house_name" ? "house_name" : `full_name`, value)
       .eq("island", island);
@@ -108,7 +108,7 @@ function VotersList({}: Props) {
         <div className="flex md:flex-row flex-col md:gap-0 gap-3 justify-between">
           <div className="flex h-[40px] gap-8">
             <SolidTabs
-              tabs={islands}
+              tabs={[{id : "B. Thulhaadhoo" , name : "B.Thulhaadhoo"}]}
               activeTab={island}
               onClick={(x: any) => setIsland(x.id)}
             />
