@@ -37,7 +37,7 @@ function VotersList({}: Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<any>(false);
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [island, setIsland] = useState<any>(Islands[0].id);
+  const [island, setIsland] = useState<any>(Islands[3].id);
   const [islands, setIslands] = useState<any>([]);
   const { user } = useUserStore();
 
@@ -45,13 +45,9 @@ function VotersList({}: Props) {
     let query = supabase
       .from("thulhaadhoo_mdp")
       .select("*")
-      .order("house_name", {
-        ascending: true,
-      });
-
-    if (island !== false) {
-      query = query.eq("island", island);
-    }
+      // .order("house_name", {
+      //   ascending: true,
+      // });
 
     const { data } = await query.range(
       (pageNumber - 1) * PAGE_SIZE,
@@ -70,21 +66,10 @@ function VotersList({}: Props) {
       .from("thulhaadhoo_mdp")
       .select("*")
       .textSearch(searchBy.id === "house_name" ? "house_name" : `full_name`, value)
-      .eq("island", island);
+      // .eq("island", island);
     setVoters(data);
     setLoading(false);
   };
-
-  function getUserIsland() {
-    if (user && user.role == "agent" && user.island) {
-      let temp = Islands.find((x) => x.id === user.island);
-      setIslands([...islands, temp]);
-      return;
-    } else {
-      setIslands(Islands);
-      return;
-    }
-  }
 
   useEffect(() => {
     fetchVoters();
@@ -94,12 +79,6 @@ function VotersList({}: Props) {
     setPageNumber(1);
     fetchVoters();
   }, [island]);
-
-  useEffect(() => {
-    getUserIsland();
-  }, []);
-
-  console.log(searchBy)
 
   return (
     <div>

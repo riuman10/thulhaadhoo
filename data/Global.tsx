@@ -3,18 +3,18 @@ import Tick from "@/components/icons/Tick";
 import { Home, Vote, Users, Landmark, UserRoundSearch } from "lucide-react";
 
 const TableFields = [
-  { name: "ID", id: "nid" },
-  {
-    name: "Agent",
-    id: "agent",
-    render: (item: any) => {
-      let words = item.agent.split("_");
-      let originalString = words
-        .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-      return <p className="capitalize">{originalString}</p>;
-    },
-  },
+  { name: "ID", id: "id" },
+  // {
+  //   name: "Agent",
+  //   id: "agent",
+  //   render: (item: any) => {
+  //     let words = item.agent.split("_");
+  //     let originalString = words
+  //       .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
+  //       .join(" ");
+  //     return <p className="capitalize">{originalString}</p>;
+  //   },
+  // },
   { name: "Name", id: "full_name" },
   { name: "Island", id: "island" },
   { name: "House Name", id: "house_name" },
@@ -169,51 +169,15 @@ const colorLookup: any = {
 
 const Candidates = [
   {
-    id: "kadde",
-    name: "Kadde",
-    from: "PPM / PNC",
+    id: "atheef",
+    name: "Hassan Atheef",
+    from: "MDP",
     color: "#D63590",
   },
   {
-    id: "shafeeg",
-    name: "Shafeeg",
+    id: "siraj",
+    name: "Mohamed Siraj",
     from: "MDP",
-    color: "#FDE047",
-  },
-  {
-    id: "shareef",
-    name: "Shareef",
-    from: "Amilla",
-    color: "#FDE047",
-  },
-  {
-    id: "thahle",
-    name: "Thahle",
-    from: "Amilla",
-    color: "#FDE047",
-  },
-  {
-    id: "hannan",
-    name: "Hannan",
-    from: "Amilla",
-    color: "#FDE047",
-  },
-  {
-    id: "afrah",
-    name: "Afrah",
-    from: "The Democrats",
-    color: "#FDE047",
-  },
-  {
-    id: "adam",
-    name: "Adam",
-    from: "PNF",
-    color: "#D83731",
-  },
-  {
-    id: "undecided",
-    name: "Undecided",
-    from: "",
     color: "#FDE047",
   },
 ];
