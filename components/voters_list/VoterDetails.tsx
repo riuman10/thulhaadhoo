@@ -104,6 +104,17 @@ function VoterDetails({
             disabled
             onChange={() => {}}
           />
+           <div className="flex flex-col gap-1">
+            <p className={`text-700 text-sm pb-1.5 font-medium`}>Party</p>
+            <DropDown
+              items={Party}
+              disabled
+              defaultSelected={Party.find((x) => x.id === "mdp")}
+              onSelect={(obj) => {
+                setParty(obj);
+              }}
+            />
+          </div>
           <Input
             placeholder="type..."
             title="ID card"
@@ -116,17 +127,7 @@ function VoterDetails({
             value={mobile}
             onChange={(value) => setMobile(value)}
           />
-          <div className="flex flex-col gap-1">
-            <p className={`text-700 text-sm pb-1.5 font-medium`}>Party</p>
-            <DropDown
-              items={Party}
-              defaultSelected={Party.find((x) => x.id === item.party)}
-              onSelect={(obj) => {
-                setParty(obj);
-              }}
-            />
-          </div>
-          <div className="flex flex-col gap-1">
+          {/* <div className="flex flex-col gap-1">
             <p className={`text-700 text-sm pb-1.5 font-medium`}>Agent</p>
             <DropDown
               items={Agents}
@@ -135,7 +136,7 @@ function VoterDetails({
                 setAgent(obj);
               }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex flex-col gap-6">
@@ -171,7 +172,7 @@ function VoterDetails({
         />
       </div>
 
-      {
+      {/* {
         hasAccess ? (
           <div className="flex flex-col gap-6">
         <p className="text-lg font-semibold mt-8">Voting for D2D</p>
@@ -186,17 +187,17 @@ function VoterDetails({
         />
       </div>
         ) : ""
-      }
+      } */}
       <div>
         <p className="text-lg font-semibold mb-4 mt-8">Voting from</p>
         <div className="flex flex-col gap-6">
-          <Input
+          {/* <Input
             placeholder="Hello"
             title="Registered box"
-            value={item.registered_box}
+            value={item.consit}
             disabled
             onChange={() => {}}
-          />
+          /> */}
           <Input
             placeholder="Hello"
             title="Consit"

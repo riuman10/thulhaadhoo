@@ -19,14 +19,14 @@ const TableFields = [
   { name: "Island", id: "island" },
   { name: "House Name", id: "house_name" },
   { name: "Mobile", id: "mobile_number" },
-  {
-    name: "Party",
-    id: "party",
-    render: (item: any) => {
-      return <PartyPill party={item.party} />;
-    },
-  },
-  { name: "Registered Box", id: "registered_box" },
+  // {
+  //   name: "Party",
+  //   id: "party",
+  //   render: (item: any) => {
+  //     return <PartyPill party={item.party} />;
+  //   },
+  // },
+  // { name: "Registered Box", id: "registered_box" },
   { name: "Voting for", id: "voting_for" },
   {
     name: "Contacted",

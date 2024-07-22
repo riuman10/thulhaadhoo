@@ -37,7 +37,7 @@ export default function Thulhaadhoo({}: Props) {
   };
 
   const fetchBox = async () => {
-    const { data } = await supabase.from(`thulhaadhoo_box_count`).select("*");
+    const { data } = await supabase.from(`mdp_island_count`).select("*");
     let temp = data && data.filter((obj) => obj.party !== "unknown");
     setVotingFrom(temp);
   };
@@ -57,7 +57,7 @@ export default function Thulhaadhoo({}: Props) {
   const filteredItems =
     votingFrom &&
     votingFrom.filter((item: any) =>
-      item.registered_box.toLowerCase().includes(search.toLowerCase())
+      item.island.toLowerCase().includes(search.toLowerCase())
     );
 
   const houseFiltered =
@@ -104,7 +104,7 @@ export default function Thulhaadhoo({}: Props) {
         </div>
       </section>
 
-      <section className="mt-10">
+      {/* <section className="mt-10">
         <div className="flex items-center gap-3">
           <PackageBox />
           <p className="text-xl font-semibold whitespace-nowrap">
@@ -123,7 +123,7 @@ export default function Thulhaadhoo({}: Props) {
               />
             ))}
         </div>
-      </section>
+      </section> */}
 
       <section className="mt-20">
         <div className="flex items-center gap-3">
@@ -152,7 +152,7 @@ export default function Thulhaadhoo({}: Props) {
           <div className="flex items-center gap-3">
             <PackageBox />
             <p className="text-xl font-semibold whitespace-nowrap">
-              Voting box
+              Voting Islands
             </p>
           </div>
           <div>
@@ -170,8 +170,8 @@ export default function Thulhaadhoo({}: Props) {
             filteredItems.map((item: any, index: number) => (
               <BorderCard
                 key={index}
-                title={item.registered_box}
-                value={item.count}
+                title={item.island}
+                value={item.island_count}
                 party={false}
                 classNames="cursor-pointer"
                 onClick={() => {
@@ -226,9 +226,9 @@ export default function Thulhaadhoo({}: Props) {
       <Modal
         drawerOpen={drawer}
         onClose={() => setDrawer(false)}
-        title={selectedDhaairaa.registered_box}
+        title={selectedDhaairaa.island}
         showButton={false}
-        size="max-w-[1400px]"
+        size="max-w-[1200px]"
       >
         <Voters item={selectedDhaairaa} onSuccess={() => {}} />
       </Modal>

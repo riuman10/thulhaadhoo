@@ -22,10 +22,10 @@ function Voters({
 
   const fetchVoters = async () => {
     const { data } = await supabase
-      .from(`thulhaadhoo_foshi`)
+      .from(`thulhaadhoo_mdp`)
       .select("*")
       .eq("island", item.island)
-      .eq("registered_box", item.registered_box);
+      // .eq("registered_box", item.registered_box);
     setVoters(data);
   };
 
@@ -35,7 +35,7 @@ function Voters({
   }, [item]);
 
   return (
-    <div>
+    <div className="px-8 py-6">
       <VirtualTable
         data={voters}
         tableFields={TableFields}
